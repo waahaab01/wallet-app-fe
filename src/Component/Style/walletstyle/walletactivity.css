@@ -1,0 +1,63 @@
+.activity-logsW{
+  width: 400px;
+  height: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  font-family: Arial, sans-serif;
+  border: 1px solid black;
+}
+
+.activity-log h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.activity-boxW{
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 3px 3px 0px #00000020;
+}
+
+.activity-leftW{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.activity-iconW{
+  font-size: 20px;
+  background: white;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #ccc;
+}
+
+.activity-typeW{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.activity-toW{
+  font-size: 12px;
+  color: gray;
+}
+
+.activity-rightW{
+  text-align: right;
+}
+
+.activity-amountW{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.activity-timeW{
+  font-size: 12px;
+  color: gray;
+}

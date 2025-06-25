@@ -1,0 +1,87 @@
+.market-wrapperFirst{
+  width: 370px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0px black;
+  font-family: Arial, sans-serif;
+}
+
+.market-titleFirst {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.coin-cardFirst {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 black;
+  margin-bottom: 14px;
+}
+
+.leftFirst {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-iconFirst{
+  background: white;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 2px 2px 0 black;
+}
+
+.coin-icon img {
+  width: 26px;
+  height: 26px;
+}
+
+.coin-detailsFirst{
+  display: flex;
+  flex-direction: column;
+}
+
+.coin-nameFirst{
+  font-family: 'Bangers', cursive;
+  font-size: 16px;
+}
+
+.coin-volumeFirst{
+  font-size: 14px;
+  color: gray;
+}
+
+.rightFirst{
+  text-align: right;
+}
+
+.coin-priceFirst{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.coin-changeFirst{
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.coin-change.up {
+  color: #00c572;
+}
+
+.coin-change.down {
+  color: #f44336;
+}

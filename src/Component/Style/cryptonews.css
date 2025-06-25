@@ -1,0 +1,117 @@
+.appFirst {
+  padding: 20px;
+  width: 1200px;
+  margin: auto;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.headingFirst {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.info-icon {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.news-containerFirst {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.news-cardFirst {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 370px;
+  box-shadow: 2px 2px 0 #000;
+  overflow: hidden;
+}
+
+.news-imgFirst {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-contentFirst {
+  padding: 15px;
+}
+
+.news-dateFirst {
+  color: orangered;
+  font-size: 14px;
+}
+
+.news-titleFirst {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.arrowFirst {
+  font-size: 16px;
+}
+
+.news-descFirst {
+  font-size: 14px;
+  color: gray;
+}
+
+.tagsFirst {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tagFirst {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Tag Colors */
+.crypto {
+  background-color: #a259ff;
+}
+
+.bitcoin {
+  background-color: #f56eb3;
+}
+
+.blockchain {
+  background-color: #00c39a;
+}
+
+.defipulse {
+  background-color: #a4eb49;
+}
+
+.button-containerFirst {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.view-more-btnFirst {
+  background-color: #ff90c2;
+  border: none;
+  padding: 12px 30px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 3px 3px #000;
+  transition: 0.2s;
+}
+
+.view-more-btnFirst:hover {
+  background-color: #f872b6;
+}

@@ -1,0 +1,86 @@
+.coins-overview {
+  max-width: 800px;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px #ccc;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border: 1px solid red;
+}
+
+.center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border: 1px solid black;
+}
+
+.center-label h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.center-label p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.increase {
+  font-size: 13px;
+  color: green;
+}
+
+.coin-details {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+}
+
+.coin-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-color {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.color-0 { background-color: #f9f871; }   /* BTC */
+.color-1 { background-color: #b4ff9f; }   /* USDT */
+.color-2 { background-color: #53f2ec; }   /* ETH */
+.color-3 { background-color: #ff8a5c; }   /* SOL */
+.color-4 { background-color: #f39ae2; }   /* OTHERS */
+
+.coin-name {
+  flex: 1;
+}
+
+.coin-value {
+  background: #eee;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}

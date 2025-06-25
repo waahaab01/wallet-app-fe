@@ -1,0 +1,85 @@
+.wallet-cardus{
+  background-color: #B46AF0;
+  padding: 20px;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  color: black;
+  font-family: sans-serif;
+  box-shadow: 0 0 0 2px #000;
+  border: 1px solid black;
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wallet-balance h1 {
+  font-size: 48px;
+  margin: 10px 0;
+  letter-spacing: 3px;
+}
+
+.wallet-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px 0;
+  border: 2px solid black;
+}
+
+.bar {
+  height: 100%;
+}
+.btc {
+  width: 35%;
+  background-color: #f7eb7b;
+}
+.usdt {
+  width: 30%;
+  background-color: #9fff75;
+}
+.eth {
+  width: 20%;
+  background-color: #c1a4ff;
+}
+.others {
+  width: 15%;
+  background-color: #ffb3c6;
+}
+
+.wallet-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 10px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+.wallet-labels img {
+  width: 16px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.wallet-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+}
+.wallet-change-positive {
+  color: #000;
+}
+.wallet-percent {
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+.wallet-percent img {
+  width: 16px;
+  margin-left: 5px;
+}

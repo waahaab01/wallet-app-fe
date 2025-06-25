@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.dash-cont{
+    width: 100%;
+    height: max-content;
+    background: #BFF6EE;
+    border: 3px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.wallet-cont{
+    width: 93%;
+    height: max-content;
+    border: 1px solid red;
+    padding-top: 70px;
+}
+.wallet-div{
+    width: 100%;
+    height: max-content;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+.row-div{
+    width: 100%;
+    height: max-content;
+    border: 1px solid black;
+}
+.market-div{
+    width: 100%;
+    height: max-content;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+.watchlist-div{
+    width: 100%;
+    height: max-content;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.crypto-div{
+    width: 100%;
+    height: max-content;
+    border: 1px solid black;
+}

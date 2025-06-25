@@ -1,0 +1,103 @@
+.wallet-cardF{
+  background-color: #b97efb;
+  width: 450px;
+  height: 200px;
+  border-radius: 10px;
+  padding: 16px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0 black;
+  font-family: Arial, sans-serif;
+  color: black;
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.wallet-title {
+  font-family: 'Bangers', cursive;
+}
+
+.wallet-currency {
+  font-weight: bold;
+}
+
+.wallet-balance {
+  font-size: 32px;
+  font-family: 'Bangers', cursive;
+  margin: 12px 0;
+}
+
+.wallet-bar {
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 8px 0;
+  border: 1.5px solid black;
+  box-shadow: 2px 2px 0 black;
+}
+
+.bar-segment {
+  height: 100%;
+}
+
+.btc {
+  background-color: #f7ef62;
+  width: 25%;
+}
+.usdt {
+  background-color: #b4ec89;
+  width: 25%;
+}
+.eth {
+  background-color: #74efff;
+  width: 25%;
+}
+.others {
+  background-color: #f79bd3;
+  width: 25%;
+}
+
+.wallet-coins {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.coin span {
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+.btc-icon {
+  color: #f7ef62;
+}
+.usdt-icon {
+  color: #b4ec89;
+}
+.eth-icon {
+  color: #74efff;
+}
+.others-icon {
+  color: #f79bd3;
+}
+
+.wallet-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.wallet-profit {
+  color: black;
+}
+
+.wallet-change {
+  color: #00c572;
+}

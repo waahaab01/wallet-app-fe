@@ -1,0 +1,38 @@
+.action-bar {
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+  background: #c9f4ef;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.action-button {
+  width: 170px;
+  border: 2px solid black;
+  box-shadow: 3px 3px 0 black;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-family: 'Bangers', cursive;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+.btn-label {
+  font-size: 16px;
+}

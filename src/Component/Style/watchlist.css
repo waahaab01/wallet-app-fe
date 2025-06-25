@@ -1,0 +1,91 @@
+.watchlist-containerF{
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 650px;
+  margin: 20px auto;
+  box-shadow: 2px 2px 0px black;
+  font-family: Arial, sans-serif;
+  border: 1px solid black;
+}
+
+.watchlist-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.info-icon {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.watchlist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.watchlist-table th {
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  padding: 10px;
+}
+
+.watchlist-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.currency-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.coin-name {
+  font-weight: bold;
+}
+
+.coin-symbol {
+  font-size: 12px;
+  color: #999;
+}
+
+.change-cell {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.change-cell.up {
+  color: green;
+}
+
+.change-cell.down {
+  color: red;
+}
+
+.trade-btn {
+  background-color: #f06543;
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 black;
+  transition: all 0.2s;
+}
+
+.trade-btn:hover {
+  background-color: #e44b2c;
+}

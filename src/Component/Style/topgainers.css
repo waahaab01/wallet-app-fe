@@ -1,0 +1,81 @@
+.gainer-wrapperF{
+  width: 370px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0 black;
+  font-family: Arial, sans-serif;
+}
+
+.gainer-titleF{
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.gainer-cardF{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 black;
+  margin-bottom: 14px;
+}
+
+.leftF{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rank-badgeF{
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-size: 16px;
+  color: black;
+  box-shadow: 2px 2px 0 black;
+  font-family: 'Bangers', cursive;
+}
+
+.gainer-infoF{
+  display: flex;
+  flex-direction: column;
+}
+
+.gainer-nameF{
+  font-family: 'Bangers', cursive;
+  font-size: 16px;
+}
+
+.gainer-volF{
+  font-size: 14px;
+  color: gray;
+}
+
+.rightF{
+  text-align: right;
+}
+
+.gainer-priceF{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.gainer-changeF{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+  font-weight: bold;
+  color: #00c572;
+  gap: 4px;
+  margin-top: 3px;
+}

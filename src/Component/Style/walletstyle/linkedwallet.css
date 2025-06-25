@@ -1,0 +1,126 @@
+.carousel-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card-list {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px 20px;
+  scrollbar-width: none;
+}
+
+.card-list::-webkit-scrollbar {
+  display: none;
+}
+
+.wallet-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 3px 3px 0px #00000020;
+}
+
+.wallet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.wallet-name {
+  font-weight: bold;
+  margin-left: 5px;
+  flex-grow: 1;
+}
+
+.dropdown {
+  font-size: 12px;
+  color: #666;
+}
+
+.wallet-balance {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.wallet-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.wallet-bar div {
+  height: 100%;
+}
+
+.btc {
+  width: 25%;
+  background: #ffe56c;
+}
+
+.usdt {
+  width: 25%;
+  background: #a0f6a4;
+}
+
+.eth {
+  width: 25%;
+  background: #b3f0ff;
+}
+
+.others {
+  width: 25%;
+  background: #fbb3ff;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.wallet-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.scroll-btn {
+  border: none;
+  background: white;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #888;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  margin-right: 10px;
+}
+
+.right {
+  margin-left: 10px;
+}
