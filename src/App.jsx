@@ -22,9 +22,9 @@ function App() {
         // </ProtectedRoute>
       } />
       <Route path="/wallet" element={
-        <ProtectedRoute>
+        // <ProtectedRoute>
           <Walletdashboard />
-        </ProtectedRoute>
+        // </ProtectedRoute>
       } />
       <Route path="/dashboard" element={
         <ProtectedRoute>

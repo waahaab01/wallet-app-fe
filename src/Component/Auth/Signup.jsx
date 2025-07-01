@@ -46,7 +46,7 @@ const Signup = () => {
       const data = await signupUser({ fullName, email, password });
       localStorage.setItem("authToken", data.token);
       toast.success('Signup successful! Wallet created. Redirecting...', { position: 'top-center', theme: 'colored' });
-      setTimeout(() => navigate("/wallet"), 2000);
+      setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       toast.error(err.message, { position: 'top-center', theme: 'colored' });
     }
@@ -107,7 +107,6 @@ const Signup = () => {
               )}
             </label>
             {/* </div> */}
-          </form>
             <label className="terms1">
               <input type="checkbox" required /> I agree to the{" "}
               <span> Terms of Service</span> and <span> Privacy Policy</span>.
@@ -121,6 +120,7 @@ const Signup = () => {
             <p className="signin-link1" onClick={() => navigate("/login")}> 
               Already have an account?<span>Sign in</span>
             </p>
+          </form>
         </div>
       </div>
     </div>
