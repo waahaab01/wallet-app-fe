@@ -1,0 +1,123 @@
+/* VerifyOTP.css */
+
+.verify-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #ffb3e6;
+  background-image: url("../../assets/wallet/Vector.png");
+  background-repeat: repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verify-card {
+  background: #fff0fa;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 350px;
+  width: 100%;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.verify-title {
+  font-family: 'Luckiest Guy', cursive, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+  text-align: center;
+}
+
+.verify-desc {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.verify-code-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.verify-code-input {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  font-size: 2rem;
+  text-align: center;
+  background: #fff;
+  outline: none;
+  transition: border 0.2s;
+}
+.verify-code-input:focus {
+  border: 2px solid #00bfae;
+}
+
+.verify-submit {
+  width: 100%;
+  background: #00bfae;
+  color: #222;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 0;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.verify-submit:hover {
+  background: #00a89c;
+}
+
+.verify-cancel {
+  width: 100%;
+  background: #a58cff;
+  color: #222;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 0;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.verify-cancel:hover {
+  background: #8d6ee6;
+}
+
+.verify-bottom {
+  font-size: 0.95rem;
+  color: #222;
+  text-align: center;
+}
+.verify-signin {
+  color: #e74c3c;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+@media (max-width: 500px) {
+  .verify-card {
+    padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+    max-width: 95vw;
+  }
+  .verify-title {
+    font-size: 1.3rem;
+  }
+  .verify-code-input {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+  }
+}

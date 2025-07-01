@@ -1,0 +1,285 @@
+/* Modal Overlay */
+.sendcoin-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Box */
+.sendcoin-modal {
+  background: #ffd6f6;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  width: 420px;
+  max-width: 95vw;
+  padding: 20px 20px 16px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: unset;
+  height: auto;
+}
+
+.sendcoin-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+.sendcoin-close img {
+  width: 100%;
+  height: 100%;
+}
+
+.sendcoin-title {
+  font-family: 'Luckiest Guy', cursive, sans-serif;
+  font-size: 1.5rem;
+  color: #111;
+  margin-bottom: 0.2rem;
+  letter-spacing: 1px;
+}
+.sendcoin-desc {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+.sendcoin-field-group {
+  margin-bottom: 1.1rem;
+}
+.sendcoin-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.sendcoin-input-row {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 7px;
+  border: 2px solid #111;
+  padding: 0 0.7rem;
+  height: 44px;
+  gap: 0.7rem;
+}
+.sendcoin-input-row--dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #fff;
+  border-radius: 7px;
+  border: 2px solid #111;
+  padding: 0 0.7rem;
+  height: 44px;
+}
+.sendcoin-input-row--dropdown .sendcoin-dropdown-wrapper {
+  flex-shrink: 0;
+  min-width: 110px;
+  z-index: 2;
+}
+.sendcoin-input-row--dropdown .sendcoin-input {
+  flex: 1;
+  min-width: 0;
+  margin-left: 0.3rem;
+}
+.sendcoin-token {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #222;
+}
+.sendcoin-token img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.sendcoin-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.1rem;
+  color: #222;
+  width: 100%;
+  font-weight: 500;
+}
+.sendcoin-or {
+  text-align: center;
+  color: #222;
+  font-weight: 700;
+  margin: 0.7rem 0 0.2rem 0;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+.sendcoin-qr {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+.sendcoin-qr img {
+  width: 140px;
+  height: 140px;
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid #111;
+  padding: 8px;
+}
+.sendcoin-info {
+  background: #f7b7e0;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.sendcoin-info-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+.sendcoin-info-detail {
+  font-size: 0.95rem;
+  color: #d10a10;
+  font-weight: 500;
+}
+.sendcoin-btn {
+  width: 100%;
+  background: #20e2c2;
+  color: #111;
+  font-weight: bold;
+  padding: 13px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+.sendcoin-btn:hover {
+  background: #00bfae;
+}
+
+/* Dropdown Styles */
+.sendcoin-dropdown-wrapper {
+  position: relative;
+  min-width: 90px;
+}
+.sendcoin-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 2px 8px 2px 2px;
+  border-radius: 6px;
+  transition: background 0.18s;
+  position: relative;
+  z-index: 2;
+}
+.sendcoin-dropdown-toggle.open,
+.sendcoin-dropdown-toggle:focus {
+  background: #f7b7e0;
+  outline: 2px solid #20e2c2;
+}
+.sendcoin-dropdown-arrow {
+  margin-left: 6px;
+  font-size: 0.9em;
+  color: #888;
+  transition: transform 0.2s;
+}
+.sendcoin-dropdown-toggle.open .sendcoin-dropdown-arrow {
+  transform: rotate(180deg);
+}
+.sendcoin-dropdown-list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 120px;
+  background: #fff;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  opacity: 0;
+  transform: translateY(-10px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.22s, transform 0.22s;
+  z-index: 10;
+  padding: 4px 0;
+}
+.sendcoin-dropdown-list.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.sendcoin-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 7px 16px 7px 10px;
+  font-size: 1rem;
+  color: #222;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.16s, color 0.16s;
+}
+.sendcoin-dropdown-item.selected,
+.sendcoin-dropdown-item:hover {
+  background: #f7b7e0;
+  color: #111;
+}
+.sendcoin-dropdown-item img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .sendcoin-modal {
+    width: 98vw;
+    padding: 10px 2vw 10px 2vw;
+  }
+  .sendcoin-title {
+    font-size: 1.1rem;
+  }
+  .sendcoin-desc {
+    font-size: 0.9rem;
+  }
+  .sendcoin-label {
+    font-size: 0.95rem;
+  }
+  .sendcoin-input-row {
+    height: 36px;
+    font-size: 0.95rem;
+  }
+  .sendcoin-token {
+    font-size: 0.95rem;
+  }
+  .sendcoin-qr img {
+    width: 90px;
+    height: 90px;
+    padding: 4px;
+  }
+  .sendcoin-btn {
+    font-size: 1rem;
+    padding: 9px 0;
+  }
+  .sendcoin-info {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Style/Login.css";
 import logo1 from "../../assets/Log.png";
 import object from "../../assets/Vector.png";
 import { useNavigate } from "react-router-dom";
-
+import { loginUser } from '../../api/auth';
+import { toast, ToastContainer } from './toaster';
+import { FaEye, FaEyeSlash } from './eyeicons';
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await loginUser({ email, password });
+      toast.success(data.message || 'OTP sent to your email', { position: 'top-center', theme: 'colored' });
+      setTimeout(() => navigate("/authentication", { state: { email } }), 1500);
+    } catch (err) {
+      toast.error(err.message, { position: 'top-center', theme: 'colored' });
+    }
+  };
+
   return (
     <>
+      <ToastContainer />
       <div className="main-containerlogin">
         <div className="img-blocklogin">
           <div className="img-boxlogin">
@@ -27,33 +45,41 @@ const Login = () => {
             <img src={logo1} alt="" />
           </div>
             <div className="login-form">
-              <form className="form">
+              <form className="form" onSubmit={handleSubmit}>
                 <h1 className="form-h1">Welcome Back</h1>
                 <h2 className="form-h2">
                   welcome back!Please enter your details
                 </h2>
                 <label>
-                  <h1 className="label-h1">Username</h1>
+                  <h1 className="label-h1">Email</h1>
                   <input
                     className="input"
-                    type="text"
-                    placeholder="Enter your username"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
-                  <h1 className="label-h1">password</h1>
+                  <h1 className="label-h1">Password</h1>
                   <div className="password-field">
                     <input
                       className="input"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="********"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
                     />
-                    <button type="button">👁️</button>
+                    <button type="button" onClick={() => setShowPassword(v => !v)} style={{background:'none',border:'none',padding:0,marginLeft:8,cursor:'pointer'}}>
+                      {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                    </button>
                   </div>
                 </label>
                 <label className="terms">
                   <input type="checkbox" /> Remember for me{" "}
-                  <span>Forget Password</span>
+                  <span style={{color:'#00bfae', cursor:'pointer'}} onClick={() => navigate('/forgot-password')}>Forget Password</span>
                 </label>
                 <button type="submit" className="signup-btn">
                   SIGN in
@@ -61,7 +87,7 @@ const Login = () => {
                 <button type="button" className="google-btn">
                   SIGN in WITH GOOGLE
                 </button>
-                <p className="signin-link" onClick={() => navigate("/signup")}>
+                <p className="signin-link" onClick={() => navigate("/signup")}> 
                   Don't have an account?<span>Sign up</span>
                 </p>
               </form>

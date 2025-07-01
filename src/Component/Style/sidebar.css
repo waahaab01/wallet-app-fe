@@ -1,5 +1,5 @@
 .sidebar {
-  width: 60px;
+  width: 70px;
   background: white;
   border-radius: 18px;
   border: 2px solid black;
@@ -10,7 +10,7 @@
   align-items: center;
   height: 80vh;
   position: fixed;
-  top: 80px;
+  top: 110px;
   left: 10px;
 }
 

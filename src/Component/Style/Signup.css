@@ -5,7 +5,7 @@
 }
 .signup-container {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #a5ff6c;
   background-image: url("../../assets/object.png");
   background-repeat: repeat;
@@ -22,13 +22,13 @@
   align-items: center;
 }
 .form-card {
-  max-width: 462px;
-  height: 500px;
+  max-width: 50%;
+  /* height: 500px; */
   background: #eaffd9;
   padding: 15px 34px;
   border-radius: 12px;
   box-shadow: 5px 5px 0px black;
-  /* margin-bottom: 30px; */
+  margin-bottom: 30px;
 }
 .logo-img {
   width: 120px;
@@ -51,8 +51,8 @@
 /* ////////////////////////////////////////////// */
 .form1{
   width: 398px;
-  height: 200px;
-  overflow: scroll;
+  /* height: 200px; */
+  /* overflow: scroll; */
   margin-top: 10px;
 }
 .label{
@@ -186,7 +186,7 @@
   }
 
   .form-card {
-    width: 100%;
+    width: 50%;
     max-width: 90%;
     height: auto;
     padding: 20px;
