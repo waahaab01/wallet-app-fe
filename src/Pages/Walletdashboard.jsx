@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Component/Style/walletstyle/walletdash.css";
 import Navwallet from "../Component/Walletdashboard/Navwallet";
 import CoinsOverview from "../Component/Walletdashboard/CoinOverview";
@@ -7,8 +7,11 @@ import Linkedwallet from "../Component/Walletdashboard/Linkedwallet";
 import Buttons from "../Component/Walletdashboard/walletbutton";
 import WalletCard from "../Component/Walletdashboard/Walletcard";
 import Walletsidebar from "../Component/Walletdashboard/Walletsidebar";
+import LinkWalletModal from "../Component/Walletdashboard/LinkWalletModal";
 
 function Walletdashboard() {
+    const [showLinkWallet, setShowLinkWallet] = useState(false);
+
   return (
     <>
       <div className="main-wall">
@@ -25,8 +28,10 @@ function Walletdashboard() {
             <div className="slider-cont">
               <div className="slider-hd">
                 <h1>LINKED WALLET</h1>
-                <button className="wal-btn">LINK WALLET</button>
+                <button onClick={() => setShowLinkWallet(true)} className="wal-btn">LINK WALLET</button>
               </div>
+                    <LinkWalletModal open={showLinkWallet} onClose={() => setShowLinkWallet(false)} />
+
               <Linkedwallet />
             </div>
             <div className="widget-hd">

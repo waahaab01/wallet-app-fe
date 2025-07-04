@@ -1,0 +1,147 @@
+.activity-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 18px 18px 10px 18px;
+  width: 100%;
+  max-width: 420px;
+  min-width: 270px;
+  min-height: 350px;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.activity-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.activity-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 2px;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.activity-scroll::-webkit-scrollbar {
+  display: none;
+}
+.activity-row {
+  display: flex;
+  align-items: flex-start;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 12px 10px;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.activity-icon {
+  font-size: 1.6rem;
+  margin-right: 12px;
+  margin-top: 2px;
+}
+.activity-info {
+  flex: 1;
+  min-width: 0;
+}
+.activity-type-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.activity-type {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #222;
+}
+.activity-status {
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  border-radius: 8px;
+  text-transform: capitalize;
+  background: #eee;
+  color: #888;
+  font-weight: 500;
+}
+.activity-status.confirmed { background: #e8ffe8; color: #1a9c1a; }
+.activity-status.pending { background: #fff7e0; color: #e6a100; }
+.activity-status.mocked { background: #e0e0e0; color: #888; }
+.activity-fromto {
+  font-size: 0.97rem;
+  color: #444;
+  display: flex;
+  gap: 18px;
+  margin-bottom: 2px;
+}
+.activity-chain {
+  font-size: 0.92rem;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+}
+.activity-amount {
+  font-weight: bold;
+  font-size: 1.15rem;
+  margin-left: 12px;
+  margin-top: 2px;
+  color: #1a9c1a;
+  min-width: 60px;
+  text-align: right;
+}
+.activity-row .activity-amount {
+  color: #e00751;
+}
+.activity-row.stake .activity-amount,
+.activity-row.buy .activity-amount {
+  color: #1a9c1a;
+}
+.activity-loading,
+.activity-error,
+.activity-empty {
+  text-align: center;
+  color: #888;
+  margin-top: 40px;
+  font-size: 1.1rem;
+}
+@media (max-width: 600px) {
+  .activity-card {
+    max-width: 98vw;
+    min-width: 0;
+    padding: 10px 2vw;
+    min-height: 220px;
+    max-height: 220px;
+  }
+  .activity-title {
+    font-size: 1.05rem;
+  }
+  .activity-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 6px;
+  }
+  .activity-icon {
+    margin-bottom: 4px;
+    margin-right: 0;
+  }
+  .activity-info {
+    width: 100%;
+  }
+  .activity-amount {
+    margin-left: 0;
+    margin-top: 6px;
+    font-size: 1rem;
+    min-width: 0;
+  }
+  .activity-fromto {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .activity-chain {
+    flex-direction: column;
+    gap: 2px;
+  }
+}

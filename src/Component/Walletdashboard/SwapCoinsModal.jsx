@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SwapCoinsModal.css';
+// import { linkWallet } from "../../api/linkWallet"; // adjust path if needed
 
 const BtcSvg = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#f7931a"/><text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff" fontWeight="bold">₿</text></svg>

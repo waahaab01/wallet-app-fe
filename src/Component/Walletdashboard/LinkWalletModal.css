@@ -1,0 +1,119 @@
+.linkwallet-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.linkwallet-modal {
+  background: #fffccf;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  width: 410px;
+  max-width: 95vw;
+  padding: 24px 24px 18px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.linkwallet-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.5rem;
+  color: #222;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s;
+}
+.linkwallet-close:hover {
+  background: #f8a6d6;
+}
+.linkwallet-title {
+  font-family: 'Luckiest Guy', cursive, sans-serif;
+  font-size: 1.3rem;
+  color: #111;
+  margin-bottom: 0.2rem;
+  letter-spacing: 1px;
+}
+.linkwallet-desc {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+.linkwallet-field-group {
+  margin-bottom: 1.1rem;
+}
+.linkwallet-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.linkwallet-input {
+  width: 100%;
+  border: 2px solid #111;
+  border-radius: 7px;
+  padding: 0.7rem 0.8rem;
+  font-size: 1.1rem;
+  color: #222;
+  background: #fff;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+.linkwallet-btn {
+  width: 140px;
+  margin: 0 0 0 auto;
+  background: #20e2c2;
+  color: #111;
+  font-weight: bold;
+  padding: 10px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+  display: block;
+}
+.linkwallet-btn:hover {
+  background: #00bfae;
+}
+.linkwallet-error {
+  color: #e00751;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+.linkwallet-success {
+  color: #00b000;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+@media (max-width: 600px) {
+  .linkwallet-modal {
+    width: 98vw;
+    padding: 10px 2vw 10px 2vw;
+  }
+  .linkwallet-title {
+    font-size: 1.05rem;
+  }
+  .linkwallet-label {
+    font-size: 1rem;
+  }
+  .linkwallet-desc {
+    font-size: 0.95rem;
+  }
+}

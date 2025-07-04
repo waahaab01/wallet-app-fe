@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SendCoinModal.css';
-import { sendEthFromMainWallet } from '../../../api/send';
+import { sendEthFromMainWallet } from '../../../api/wallet';
 
 // Custom SVG icons for tokens and addresses
 const BtcSvg = () => (
@@ -81,14 +81,18 @@ const SendCoinModal = ({ open, onClose }) => {
     setSuccess('');
     setLoading(true);
     try {
+      const token = localStorage.getItem('authToken');
+      console.log('Sending:', { toAddress: recipient, amountEth: amount.replace(/,/g, ''), token });
       const result = await sendEthFromMainWallet({
         toAddress: recipient,
         amountEth: amount.replace(/,/g, ''),
-        token: selectedToken.label,
+        token,
       });
       setSuccess(result.message || 'Transaction sent!');
+      console.log('Send Success:', result);
     } catch (err) {
       setError(err.message);
+      console.error('Send Error:', err);
     } finally {
       setLoading(false);
     }

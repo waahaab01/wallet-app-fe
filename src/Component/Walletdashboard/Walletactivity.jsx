@@ -1,73 +1,76 @@
-import React from 'react';
-import '../Style/walletstyle/walletactivity.css';
+import React, { useEffect, useState } from "react";
+import { getTransactionHistory } from "../../api/wallet";
+import "./Walletactivity.css";
+
+const typeMeta = {
+  send:   { color: "#ffe5e5", icon: "↗️", label: "Send" },
+  stake:  { color: "#e5f7ff", icon: "📥", label: "Stake" },
+  unstake:{ color: "#f9f5e7", icon: "📤", label: "Unstake" },
+  buy:    { color: "#e5ffe5", icon: "🛒", label: "Buy" },
+  swap:   { color: "#f3e5ff", icon: "🔄", label: "Swap" },
+  default:{ color: "#f0f0f0", icon: "💸", label: "Other" }
+};
 
 const Walletactivity = () => {
-  const activities = [
-    {
-      type: "SENT",
-      to: "To: 0xABC...123",
-      amount: "-0.25 ETH",
-      time: "2 hrs ago",
-      color: "#fce9f1",
-      icon: "↗️",
-      amountColor: "#e00751"
-    },
-    {
-      type: "RECEIVED",
-      to: "To: 0xABC...123",
-      amount: "+$500 USDT",
-      time: "Today at 9:45 AM",
-      color: "#e8fce9",
-      icon: "⬇️",
-      amountColor: "#00b000"
-    },
-    {
-      type: "SWAPED",
-      to: "USDC → ETH",
-      amount: "~$220",
-      time: "Yesterday",
-      color: "#fff0e6",
-      icon: "🔁",
-      amountColor: "#00b000"
-    },
-    {
-      type: "TOP-UP",
-      to: "From: Coinbase Wallet",
-      amount: "+$500 USDT",
-      time: "Yesterday",
-      color: "#e7f8fc",
-      icon: "➕",
-      amountColor: "#00b000"
-    }
-  ];
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const token = localStorage.getItem("authToken");
+        const res = await getTransactionHistory(token);
+        setActivities(res.transactions || []);
+      } catch (err) {
+        setError("Failed to load activity");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <div className="activity-logsW">
-      <h2>Activity Log</h2>
-      {activities.map((activity, index) => (
-        <div
-          className="activity-boxW"
-          key={index}
-          style={{ backgroundColor: activity.color }}
-        >
-          <div className="activity-leftW">
-            <div className="activity-iconW">{activity.icon}</div>
-            <div>
-              <div className="activity-typeW">{activity.type}</div>
-              <div className="activity-toW">{activity.to}</div>
+    <div className="activity-card">
+      <div className="activity-title">Wallet Activity</div>
+      <div className="activity-scroll">
+        {loading && <div className="activity-loading">Loading...</div>}
+        {error && <div className="activity-error">{error}</div>}
+        {!loading && !error && activities.length === 0 && (
+          <div className="activity-empty">No activity found.</div>
+        )}
+        {activities.map((tx) => {
+          const meta = typeMeta[tx.type] || typeMeta.default;
+          return (
+            <div className="activity-row" style={{ background: meta.color }} key={tx._id}>
+              <div className="activity-icon">{meta.icon}</div>
+              <div className="activity-info">
+                <div className="activity-type-status">
+                  <span className="activity-type">{meta.label}</span>
+                  <span className={`activity-status ${tx.status}`}>{tx.status}</span>
+                </div>
+                <div className="activity-fromto">
+                  <span>From: <b>{tx.from}</b></span>
+                  <span>To: <b>{tx.to}</b></span>
+                </div>
+                <div className="activity-chain">
+                  <span>{tx.chain}</span>
+                  <span className="activity-date">
+                    {new Date(tx.createdAt).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              <div className="activity-amount">
+                {tx.type === "send" || tx.type === "unstake" ? "-" : "+"}
+                {tx.amount}
+              </div>
             </div>
-          </div>
-          <div className="activity-rightW">
-            <div
-              className="activity-amountW"
-              style={{ color: activity.amountColor }}
-            >
-              {activity.amount}
-            </div>
-            <div className="activity-timeW">{activity.time}</div>
-          </div>
-        </div>
-      ))}
+          );
+        })}
+      </div>
     </div>
   );
 };
