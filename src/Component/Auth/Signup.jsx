@@ -17,6 +17,8 @@ function getPasswordStrength(password) {
 }
 
 const Signup = () => {
+  const [loading, setLoading] = useState(false);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,22 +37,26 @@ const Signup = () => {
     "Very Strong"
   ];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (password !== rePassword) {
-      toast.error("Passwords do not match", { position: 'top-center', theme: 'colored' });
-      return;
-    }
-    const fullName = `${firstName} ${lastName}`.trim();
-    try {
-      const data = await signupUser({ fullName, email, password });
-      localStorage.setItem("authToken", data.token);
-      toast.success('Signup successful! Wallet created. Redirecting...', { position: 'top-center', theme: 'colored' });
-      setTimeout(() => navigate("/login"), 2000);
-    } catch (err) {
-      toast.error(err.message, { position: 'top-center', theme: 'colored' });
-    }
-  };
+ const handleSubmit = async (e) => {
+  if (e) e.preventDefault();
+  setLoading(true);
+  if (password !== rePassword) {
+    toast.error("Passwords do not match", { position: 'top-center', theme: 'colored' });
+    setLoading(false);
+    return;
+  }
+  const fullName = `${firstName} ${lastName}`.trim();
+  try {
+    const data = await signupUser({ fullName, email, password });
+    localStorage.setItem("authToken", data.token);
+    toast.success('Signup successful! Wallet created. Redirecting...', { position: 'top-center', theme: 'colored' });
+    setTimeout(() => navigate("/login"), 2000);
+  } catch (err) {
+    toast.error(err.message, { position: 'top-center', theme: 'colored' });
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="signup-container">
@@ -111,9 +117,27 @@ const Signup = () => {
               <input type="checkbox" required /> I agree to the{" "}
               <span> Terms of Service</span> and <span> Privacy Policy</span>.
             </label>
-            <button type="submit" className="signup-btn">
-              SIGN UP
-            </button>
+            <button type="submit" className="signup-btn" disabled={loading}>
+  {loading ? (
+    <span>
+      <span className="loader" style={{
+        display: 'inline-block',
+        width: 18,
+        height: 18,
+        border: '2px solid #fff',
+        borderTop: '2px solid #00bfae',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+        marginRight: 8,
+        verticalAlign: 'middle'
+      }} />
+      Please wait...
+    </span>
+  ) : (
+    "SIGN UP"
+  )}
+</button>
+
             <button type="button" className="google-btn" onClick={()=>handleSubmit()}>
               SIGN UP WITH GOOGLE
             </button>

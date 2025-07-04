@@ -11,16 +11,20 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const data = await loginUser({ email, password });
       toast.success(data.message || 'OTP sent to your email', { position: 'top-center', theme: 'colored' });
       setTimeout(() => navigate("/authentication", { state: { email } }), 1500);
     } catch (err) {
       toast.error(err.message, { position: 'top-center', theme: 'colored' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -81,8 +85,25 @@ const Login = () => {
                   <input type="checkbox" /> Remember for me{" "}
                   <span style={{color:'#00bfae', cursor:'pointer'}} onClick={() => navigate('/forgot-password')}>Forget Password</span>
                 </label>
-                <button type="submit" className="signup-btn">
-                  SIGN in
+                <button type="submit" className="signup-btn" disabled={loading}>
+                  {loading ? (
+                    <span>
+                      <span className="loader" style={{
+                        display: 'inline-block',
+                        width: 18,
+                        height: 18,
+                        border: '2px solid #fff',
+                        borderTop: '2px solid #00bfae',
+                        borderRadius: '50%',
+                        animation: 'spin 1s linear infinite',
+                        marginRight: 8,
+                        verticalAlign: 'middle'
+                      }} />
+                      Please wait...
+                    </span>
+                  ) : (
+                    "SIGN in"
+                  )}
                 </button>
                 <button type="button" className="google-btn">
                   SIGN in WITH GOOGLE
