@@ -1,7 +1,7 @@
 // src/api/auth.js
 
 // const BASE_URL = 'http://localhost:5001/api';
-const BASE_URL = 'https://wallet-app-backend-production-8b0f.up.railway.app/api';
+const BASE_URL = 'https://wallet-app-backend-production-e55c.up.railway.app/api';
 
 export async function loginUser({ email, password }) {
   const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -63,6 +63,34 @@ export async function verifyLoginOTP({ email, otp }) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, otp })
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || 'OTP verification failed');
+  return data;
+}
+
+export async function loginWithMnemonic(mnemonic) {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/login-mnemonic`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ mnemonic }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || 'Failed to login with mnemonic');
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function verifyLoginMnemonicOTP({ mnemonic, otp }) {
+  const response = await fetch(`${BASE_URL}/auth/login-mnemonic/verify-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mnemonic, otp })
   });
   const data = await response.json();
   if (!response.ok) throw new Error(data.message || 'OTP verification failed');

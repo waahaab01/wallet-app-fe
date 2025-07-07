@@ -3,9 +3,9 @@ import "../Style/Login.css";
 import logo1 from "../../assets/Log.png";
 import object from "../../assets/Vector.png";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from '../../api/auth';
-import { toast, ToastContainer } from './toaster';
-import { FaEye, FaEyeSlash } from './eyeicons';
+import { loginUser } from "../../api/auth";
+import { toast, ToastContainer } from "./toaster";
+import { FaEye, FaEyeSlash } from "./eyeicons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,10 +19,13 @@ const Login = () => {
     setLoading(true);
     try {
       const data = await loginUser({ email, password });
-      toast.success(data.message || 'OTP sent to your email', { position: 'top-center', theme: 'colored' });
+      toast.success(data.message || "OTP sent to your email", {
+        position: "top-center",
+        theme: "colored",
+      });
       setTimeout(() => navigate("/authentication", { state: { email } }), 1500);
     } catch (err) {
-      toast.error(err.message, { position: 'top-center', theme: 'colored' });
+      toast.error(err.message, { position: "top-center", theme: "colored" });
     } finally {
       setLoading(false);
     }
@@ -34,7 +37,8 @@ const Login = () => {
       <div className="main-containerlogin">
         <div className="img-blocklogin">
           <div className="img-boxlogin">
-            <img src={object} alt="" /></div>
+            <img src={object} alt="" />
+          </div>
           <div className="text-contlogin">
             <h1 className="textcont-h1">ONE WALLET TO RULE THEM ALL</h1>
             <h2 className="textcont-h2">
@@ -45,9 +49,9 @@ const Login = () => {
         </div>
         <div className="form-blocklogin">
           <div className="form-containerlogin">
-          <div className="logodivlogin">
-            <img src={logo1} alt="" />
-          </div>
+            <div className="logodivlogin">
+              <img src={logo1} alt="" />
+            </div>
             <div className="login-form">
               <form className="form" onSubmit={handleSubmit}>
                 <h1 className="form-h1">Welcome Back</h1>
@@ -61,7 +65,7 @@ const Login = () => {
                     type="email"
                     placeholder="Enter your email"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </label>
@@ -73,32 +77,54 @@ const Login = () => {
                       type={showPassword ? "text" : "password"}
                       placeholder="********"
                       value={password}
-                      onChange={e => setPassword(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
-                    <button type="button" onClick={() => setShowPassword(v => !v)} style={{background:'none',border:'none',padding:0,marginLeft:8,cursor:'pointer'}}>
-                      {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        marginLeft: 8,
+                        cursor: "pointer",
+                      }}
+                    >
+                      {showPassword ? (
+                        <FaEyeSlash size={18} />
+                      ) : (
+                        <FaEye size={18} />
+                      )}
                     </button>
                   </div>
                 </label>
                 <label className="terms">
                   <input type="checkbox" /> Remember for me{" "}
-                  <span style={{color:'#00bfae', cursor:'pointer'}} onClick={() => navigate('/forgot-password')}>Forget Password</span>
+                  <span
+                    style={{ color: "#00bfae", cursor: "pointer" }}
+                    onClick={() => navigate("/forgot-password")}
+                  >
+                    Forget Password
+                  </span>
                 </label>
                 <button type="submit" className="signup-btn" disabled={loading}>
                   {loading ? (
                     <span>
-                      <span className="loader" style={{
-                        display: 'inline-block',
-                        width: 18,
-                        height: 18,
-                        border: '2px solid #fff',
-                        borderTop: '2px solid #00bfae',
-                        borderRadius: '50%',
-                        animation: 'spin 1s linear infinite',
-                        marginRight: 8,
-                        verticalAlign: 'middle'
-                      }} />
+                      <span
+                        className="loader"
+                        style={{
+                          display: "inline-block",
+                          width: 18,
+                          height: 18,
+                          border: "2px solid #fff",
+                          borderTop: "2px solid #00bfae",
+                          borderRadius: "50%",
+                          animation: "spin 1s linear infinite",
+                          marginRight: 8,
+                          verticalAlign: "middle",
+                        }}
+                      />
                       Please wait...
                     </span>
                   ) : (
@@ -108,7 +134,7 @@ const Login = () => {
                 <button type="button" className="google-btn">
                   SIGN in WITH GOOGLE
                 </button>
-                <p className="signin-link" onClick={() => navigate("/signup")}> 
+                <p className="signin-link" onClick={() => navigate("/signup")}>
                   Don't have an account?<span>Sign up</span>
                 </p>
               </form>

@@ -4,7 +4,7 @@ import object3 from "../../assets/Vector2.png";
 import logo from "../../assets/Log.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from './toaster';
-import { verifyLoginOTP } from '../../api/auth';
+import { verifyLoginOTP, verifyLoginMnemonicOTP } from '../../api/auth';
 
 const Authentication = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -12,6 +12,7 @@ const Authentication = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
+  const mnemonic = location.state?.mnemonic || "";
   const inputs = [useRef(), useRef(), useRef(), useRef()];
 
   const handleChange = (e, idx) => {
@@ -32,11 +33,22 @@ const Authentication = () => {
     setLoading(true);
     try {
       const code = otp.join("");
-      const data = await verifyLoginOTP({ email, otp: code });
+      let data;
+      if (mnemonic) {
+        data = await verifyLoginMnemonicOTP({ mnemonic, otp: code });
+      } else {
+        data = await verifyLoginOTP({ email, otp: code });
+      }
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       toast.success("Login verified! Redirecting...", { position: 'top-center', theme: 'colored' });
-      setTimeout(() => navigate('/dashboard'), 1200);
+      setTimeout(() => {
+        if (data.user && data.user.role === "admin") {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
+      }, 1200);
     } catch (err) {
       toast.error(err.message, { position: 'top-center', theme: 'colored' });
     } finally {

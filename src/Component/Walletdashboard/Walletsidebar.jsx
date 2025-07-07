@@ -30,7 +30,7 @@ const Walletsidebar = () => {
     <div className="sidebar">
       <div
         className="sidebar-top"
-        onClick={() => navigate("/dashboard")}
+        onClick={() => navigate("/")}
         style={{ cursor: "pointer" }}
       >
         <img src={navitem} alt="Top Icon" className="top-img" />

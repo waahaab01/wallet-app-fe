@@ -1,0 +1,111 @@
+/* Overlay with a soft blur and darker background */
+.admin-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 30, 40, 0.32);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modern glassy modal with border and shadow */
+.admin-modal {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  box-shadow: 0 12px 48px 0 rgba(44, 44, 84, 0.22), 0 2px 12px 0 rgba(247, 147, 26, 0.10);
+  width: 700px;
+  max-width: 96vw;
+  padding: 38px 32px 28px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 2.5px solid #f7931a33;
+  animation: admin-modal-fadein 0.22s cubic-bezier(.4,1.4,.6,1);
+}
+@keyframes admin-modal-fadein {
+  from { transform: translateY(40px) scale(0.97); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.admin-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #fff;
+  border: 2px solid #f7931a;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.6rem;
+  color: #f7931a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px 0 rgba(247, 147, 26, 0.10);
+  transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+}
+.admin-modal-close:hover {
+  background: #f7931a;
+  color: #fff;
+  border: 2px solid #f7931a;
+  box-shadow: 0 4px 16px 0 rgba(247, 147, 26, 0.18);
+}
+
+.admin-modal h2 {
+  margin: 0 0 22px 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #f7931a;
+  text-align: center;
+  letter-spacing: 0.7px;
+  text-shadow: 0 1px 0 #fffbe6, 0 2px 8px #f7931a11;
+}
+
+.admin-modal-content {
+  margin-top: 0;
+  font-size: 1.12rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 8px 0 0 0;
+}
+.admin-modal-content > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 1.09rem;
+  background: linear-gradient(90deg, #fffbe6 80%, #fff7d1 100%);
+  border-radius: 9px;
+  padding: 10px 14px;
+  border: 1.5px solid #f7e2b7;
+  box-shadow: 0 2px 8px 0 rgba(247, 147, 26, 0.06);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  min-height: 38px;
+}
+.admin-modal-content b {
+  color: #f7931a;
+  font-weight: 700;
+  min-width: 120px;
+  display: inline-block;
+  font-size: 1.08rem;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 600px) {
+  .admin-modal {
+    width: 99vw;
+    padding: 16px 2vw 12px 2vw;
+  }
+  .admin-modal-content > div {
+    font-size: 0.99rem;
+    padding: 8px 6px;
+  }
+  .admin-modal h2 {
+    font-size: 1.08rem;
+  }
+}

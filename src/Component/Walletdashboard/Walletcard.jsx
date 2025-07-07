@@ -77,8 +77,8 @@ const WalletCard = () => {
       </div>
 
       <div className="wallet-footer">
-        <span className="wallet-change-positive">+ $3,432.15</span>
-        <span className="wallet-percent">+3.1% <img src={imgUp} alt="up" /></span>
+        <span className="wallet-change-positive">0%</span>
+        <span className="wallet-percent">0% <img src={imgUp} alt="up" /></span>
       </div>
     </div>
   );

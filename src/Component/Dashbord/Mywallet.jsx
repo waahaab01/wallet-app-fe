@@ -71,8 +71,8 @@ const Mywallet = () => {
       </div>
 
       <div className="wallet-stats">
-        <div className="wallet-profit">+ $3,432.15</div>
-        <div className="wallet-change">+ 3.1% 📈</div>
+        <div className="wallet-profit">0%</div>
+        <div className="wallet-change">0%📈</div>
       </div>
     </div>
   );
