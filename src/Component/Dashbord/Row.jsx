@@ -5,32 +5,47 @@ import BuySellModal from '../Walletdashboard/BuySellModal/BuySellModal';
 import BuyCoinsModal from '../Walletdashboard/BuySellModal/BuyCoinsModal';
 import SellCoinsModal from '../Walletdashboard/BuySellModal/SellCoinsModal';
 import SwapCoinsModal from '../Walletdashboard/SwapCoinsModal';
+import plusIcon from '../../assets/logo assets/plus-circle.png';
+import sendIcon from '../../assets/logo assets/Icon (1).png';
+import buySellIcon from '../../assets/logo assets/Icon (2).png';
+import receiveIcon from '../../assets/logo assets/Icon (3).png';
+import swapIcon from '../../assets/logo assets/Icon.png';
+import topupBg from '../../assets/logo assets/plus-circle (1).png'; // Example, apni image rakhain
+import sendBg from '../../assets/logo assets/trend-up-02.png';
+import buySellBg from '../../assets/logo assets/currency-dollar-circle.png';
+import receiveBg from '../../assets/logo assets/trend-down-02.png';
+import swapBg from '../../assets/logo assets/coins-swap-02.png';
 
 const buttons = [
   {
     label: "TOP UP",
     bg: "#00e3d8",
-    icon: "➕",
+    icon: plusIcon,
+    bgImage: topupBg,
   },
   {
     label: "SEND",
     bg: "#f79bd3",
-    icon: "↗",
+    icon: sendIcon,
+    bgImage: sendBg,
   },
   {
-    label: "BUY / SELL",
+    label: "BUY/SELL",
     bg: "#fff685",
-    icon: "💲",
+    icon: buySellIcon,
+    bgImage: buySellBg,
   },
   {
     label: "RECEIVE",
     bg: "#b0ff92",
-    icon: "↙",
+    icon: receiveIcon,
+    bgImage: receiveBg,
   },
   {
     label: "SWAP",
     bg: "#ff6b3b",
-    icon: "🔄",
+    icon: swapIcon,
+    bgImage: swapBg,
   },
 ];
 
@@ -56,10 +71,18 @@ const Row = () => {
           <button
             key={idx}
             className="action-button"
-            style={{ backgroundColor: btn.bg }}
+            style={{
+              backgroundColor: btn.bg,
+              backgroundImage: `url(${btn.bgImage})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'bottom right',
+              backgroundSize: '60px 60px', // adjust as needed
+            }}
             onClick={() => handleButtonClick(btn.label)}
           >
-            <span className="btn-icon">{btn.icon}</span>
+            <span className="btn-icon">
+              <img src={btn.icon} alt={btn.label} style={{ width: 28, height: 28 }} />
+            </span>
             <span className="btn-label">{btn.label}</span>
           </button>
         ))}

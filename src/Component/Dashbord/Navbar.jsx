@@ -1,20 +1,15 @@
 import React from "react";
 import "../Style/navbar.css";
-import logo from "../../assets/logo.png"
-import frame from "../../assets/Frame.png";
 import bell from "../../assets/bell.png";
 import avatar from "../../assets/Portrait.png";
 
-const Navbar = () => {
+const Navbar = ({ logo, titleImg }) => {
   return (
     <div className="navbar">
       <div className="left">
-        <img src={logo} alt="Logo" className="logo" />
-        <span className="title">
-          <img className="logo-img1" src={frame} alt="" />
-        </span>
+        {logo && <img src={logo} alt="Logo" className="logo" style={{height: 36, marginRight: 10}} />}
+        {titleImg && <img src={titleImg} alt="Title" className="navbar-title-img" style={{height: 56}} />}
       </div>
-
       <div className="right">
         <div className="search">
           <input type="text" placeholder="Search" />

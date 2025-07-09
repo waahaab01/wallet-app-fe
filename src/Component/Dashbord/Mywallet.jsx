@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../Style/mywallet.css";
 import { fetchWalletsAndBalances, getWalletBarMeta } from "../../utils/walletUtils.js";
-
+import ufo from "../../assets//ufo.png";
 const Mywallet = () => {
   const [wallets, setWallets] = useState([]);
   const [total, setTotal] = useState(0);
@@ -37,16 +37,17 @@ const Mywallet = () => {
 
   return (
     <div className="wallet-cardF">
+      <img src={ufo} alt="ufo-wallet" className="ufo-wallet"/>
       <div className="wallet-header">
         <span className="wallet-title">My Wallet</span>
         <span className="wallet-currency">USD ⌄</span>
       </div>
 
-      <div className="wallet-balance">
+      <div className="wallet-balance-db">
         {loading ? "Loading..." : `$${total.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
       </div>
 
-      <div className="wallet-bar">
+      <div className="wallet-bar-db">
         {barData.map((w, i) => (
           <div
             key={w._id || i}

@@ -1,17 +1,21 @@
+/* Responsive action bar for wallet actions */
 .action-bar {
   display: flex;
-  gap: 12px;
-  padding: 20px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 14px;
   background: #c9f4ef;
   justify-content: center;
-  flex-wrap: wrap;
-  /* border: 1px solid red; */
-  display: flex;
-  justify-content: space-evenly;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .action-button {
-  width: 170px;
+  height: 92px;
+  flex: 1 1 0;
+  min-width: 120px;
+  max-width: 245px;
+  width: 100%;
   border: 2px solid black;
   box-shadow: 3px 3px 0 black;
   border-radius: 8px;
@@ -20,19 +24,112 @@
   font-family: 'Bangers', cursive;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 60px 60px;
 }
 
 .action-button:hover {
   transform: scale(1.05);
 }
 
-.btn-icon {
-  font-size: 18px;
+.btn-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .btn-label {
-  font-size: 16px;
+  font-size: 30px;
+  white-space: nowrap;
+  font-weight: 700;
+  font-family: 'Bangers', cursive;
+}
+
+/* Large screens (1200px and below) */
+@media (max-width: 1200px) {
+  .action-bar {
+    gap: 12px;
+  }
+  .action-button {
+    max-width: 200px;
+    font-size: 15px;
+    background-size: 48px 48px;
+  }
+  .btn-label {
+    font-size: 22px;
+  }
+}
+
+/* Medium screens (900px and below) */
+@media (max-width: 900px) {
+  .action-bar {
+    gap: 10px;
+    padding: 14px;
+  }
+  .action-button {
+    max-width: 150px;
+    font-size: 15px;
+    padding: 10px 8px;
+    background-size: 36px 36px;
+  }
+  .btn-label {
+    font-size: 18px;
+  }
+  .btn-icon img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Small screens (600px and below) - stack buttons in column */
+@media (max-width: 600px) {
+  .action-bar {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 4px;
+  }
+  .action-button {
+    min-width: 90vw;
+    max-width: 98vw;
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 8px;
+    background-size: 28px 28px;
+  }
+  .btn-label {
+    font-size: 14px;
+  }
+  .btn-icon img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Extra small screens (400px and below) */
+@media (max-width: 400px) {
+  .action-bar {
+    gap: 7px;
+    padding: 6px 2px;
+  }
+  .action-button {
+    min-width: 96vw;
+    max-width: 99vw;
+    font-size: 12px;
+    padding: 4px 4px;
+    background-size: 18px 18px;
+  }
+  .btn-label {
+    font-size: 11px;
+  }
+  .btn-icon img {
+    width: 13px;
+    height: 13px;
+  }
 }

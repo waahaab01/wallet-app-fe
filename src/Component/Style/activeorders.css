@@ -1,11 +1,11 @@
 .active-orders-container {
   padding: 20px;
   border-radius: 12px;
-  width: 100%;
+  width: 57%;
   background: white;
   max-width: 500px;
   max-height: 450px;
-  margin: auto;
+  /* margin: auto; */
   font-family: 'Arial', sans-serif;
   border: 1px solid black;
 }

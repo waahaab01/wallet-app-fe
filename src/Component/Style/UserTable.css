@@ -34,32 +34,55 @@
   border-color: #e00751;
 }
 .admin-table-scroll {
+  width: 100%;
   overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 0.5rem 0.5rem 1rem 0.5rem;
 }
+
 .admin-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   min-width: 600px;
   background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 1rem;
 }
+
 .admin-table th, .admin-table td {
-  padding: 12px 10px;
+  padding: 0.75rem 1rem;
   text-align: left;
-  border-bottom: 1.5px solid #f3f3f3;
+  white-space: nowrap;
 }
+
 .admin-table th {
-  background: #f7931a;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.05rem;
+  background: #f7f7fa;
+  font-weight: 700;
+  color: #222;
+  border-bottom: 2px solid #eaeaea;
 }
+
+.admin-table tbody tr {
+  transition: background 0.15s;
+}
+
+.admin-table tbody tr:hover {
+  background: #f0f8ff;
+}
+
+.admin-table td {
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
 .admin-table-row {
   cursor: pointer;
-  transition: background 0.18s;
 }
-.admin-table-row:hover {
-  background: #fffbe6;
-}
+
 .admin-table-pagination {
   display: flex;
   justify-content: center;
@@ -82,15 +105,109 @@
   color: #aaa;
   cursor: not-allowed;
 }
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .admin-table {
+    font-size: 0.95rem;
+    min-width: 500px;
+  }
+  .admin-table th, .admin-table td {
+    padding: 0.6rem 0.7rem;
+  }
+}
+
 @media (max-width: 700px) {
-  .admin-table-root {
-    padding: 10px 2vw;
+  .admin-table-scroll {
+    padding: 0.2rem 0.2rem 0.7rem 0.2rem;
+    border-radius: 8px;
   }
   .admin-table {
+    font-size: 0.9rem;
     min-width: 400px;
-    font-size: 0.95rem;
   }
-  .admin-table-header h2 {
-    font-size: 1.05rem;
+  .admin-table th, .admin-table td {
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .admin-table-scroll {
+    padding: 0 0 0.5rem 0;
+    border-radius: 6px;
+  }
+  .admin-table {
+    font-size: 0.85rem;
+    min-width: 320px;
+  }
+  .admin-table th, .admin-table td {
+    padding: 0.35rem 0.3rem;
+  }
+}
+
+.mnemonic-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 260px;
+  min-width: 80px;
+  overflow-x: auto;
+  word-break: break-all;
+  background: #f7f7fa;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border: 1px solid #ececec;
+}
+
+.mnemonic-words {
+  font-family: monospace;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  color: #333;
+  white-space: pre-wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.mnemonic-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 1.1rem;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+.mnemonic-toggle:hover {
+  color: #222;
+}
+
+@media (max-width: 700px) {
+  .mnemonic-cell {
+    max-width: 120px;
+    font-size: 0.85rem;
+    gap: 4px;
+    padding: 4px 6px;
+  }
+  .mnemonic-words {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mnemonic-cell {
+    max-width: 80px;
+    font-size: 0.75rem;
+    gap: 2px;
+    padding: 2px 3px;
+    min-width: 0;
+  }
+  .mnemonic-words {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    min-width: 0;
   }
 }

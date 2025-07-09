@@ -17,7 +17,7 @@ const UserDetailsModal = ({ user, loading, onClose }) => {
             <>
               <div><b>Full Name:</b> {user.fullName}</div>
               <div><b>Email:</b> {user.email}</div>
-              <div><b>Wallet Address:</b> {user.walletAddress}</div>
+              <div><b>Wallet Address:</b> {user.mnemonic}</div>
               {/* Add more fields as needed */}
             </>
           )}

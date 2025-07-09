@@ -1,23 +1,34 @@
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
-  padding: 20px;
-  background: #c9f4ef;
-  width: 600px;
-  margin: auto;
+  padding: 20px 0;
+  justify-content: center;
 }
 
 .stat-card {
   background: white;
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 3px 3px 0 black;
   padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
+  height: 143px;
+  max-width: 49%;
+  width: 100%;
+  min-width: 220px;
+  box-sizing: border-box;
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+}
+
+.stat-card:hover {
+  transform: translate(-4px) scale(1.03);
+  /* box-shadow: 6px 6px 0 #f7931a, 0 4px 24px 0 #f7931a22; */
 }
 
 .stat-header {
@@ -27,20 +38,20 @@
 }
 
 .stat-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  /* border-radius: 50%; */
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 0 black;
+  /* box-shadow: 2px 2px 0 black; */
 }
 
 .stat-value {
-  font-size: 22px;
+  font-size: 50px;
   font-weight: bold;
-  font-family: 'Bangers', cursive;
+  font-family: "Bangers", cursive;
 }
 
 .stat-footer {
@@ -50,19 +61,59 @@
 }
 
 .stat-label {
-  font-size: 14px;
+  font-size: 25px;
   color: gray;
 }
 
 .stat-change {
   font-size: 14px;
   font-weight: bold;
-  color: #00c572;
+  color: #55E265;
   display: flex;
   align-items: center;
   gap: 4px;
+  padding: 5px;
+  border-radius: 90px;
+  background-color: #55e26533;
+  height: 30px;
+  width: 90px;
+  justify-content: center;
 }
 
 .trend-icon {
   font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .stat-card {
+    max-width: 100%;
+    min-width: 180px;
+    height: 120px;
+    font-size: 0.95rem;
+  }
+  .stats-grid {
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px;
+  }
+  .stat-card {
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    font-size: 0.92rem;
+    padding: 10px 6px;
+  }
+  .stat-value {
+    font-size: 2rem;
+  }
+  .stat-label {
+    font-size: 1.1rem;
+  }
 }

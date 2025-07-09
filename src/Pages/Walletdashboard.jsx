@@ -15,11 +15,11 @@ function Walletdashboard() {
   return (
     <>
       <div className="main-wall">
-        <Navwallet />
+        {/* <Navwallet /> */}
         <div className="mainwall-cont">
-          <div className="wall-left">
+          {/* <div className="wall-left">
             <Walletsidebar/>
-          </div>
+          </div> */}
           <div className="wall-right">
             <div className="btn-cont">
               <WalletCard />

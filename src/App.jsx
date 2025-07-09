@@ -1,16 +1,18 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import RoleProtectedRoute from './Component/Auth/RoleProtectedRoute';
-import Dashbord from './Pages/Dashbord'
 import Signup from './Component/Auth/Signup'
 import Login from './Component/Auth/Login'
 import Authentication from './Component/Auth/Authentication'
-import Walletdashboard from './Pages/Walletdashboard'
 import ForgotPassword from './Component/Auth/ForgotPassword'
 import VerifyOTP from './Component/Auth/VerifyOTP'
 import ResetPassword from './Component/Auth/ResetPassword'
 import TopUpLogin from './Component/Auth/TopUpLogin'
-import AdminDashboard from './Pages/AdminDashboard'; // Make sure this exists
+import AdminDashboard from './Pages/AdminDashboard';
+import DashboardLayout from './Component/Dashbord/DashboardLayout';
+import Dashbord from './Pages/Dashbord';
+import Walletdashboard from './Pages/Walletdashboard';
+import ActivityLog from './Pages/ActivityLog';
 
 function App() {
   return (
@@ -24,23 +26,21 @@ function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/topup-login" element={<TopUpLogin />} />
 
-      {/* User-only routes */}
-      <Route
-        path="/wallet"
-        element={
-          <RoleProtectedRoute allowedRoles={["user"]}>
-            <Walletdashboard />
-          </RoleProtectedRoute>
-        }
-      />
+      {/* User dashboard layout with nested routes */}
       <Route
         path="/"
         element={
           <RoleProtectedRoute allowedRoles={["user"]}>
-            <Dashbord />
+            <DashboardLayout />
           </RoleProtectedRoute>
         }
-      />
+      >
+        <Route index element={<Dashbord />} />
+        <Route path="wallet" element={<Walletdashboard />} />
+        <Route path="activity-log" element={<ActivityLog />} />
+        {/* Add more nested routes as needed */}
+      </Route>
+
       {/* Admin-only routes */}
       <Route
         path="/admin"

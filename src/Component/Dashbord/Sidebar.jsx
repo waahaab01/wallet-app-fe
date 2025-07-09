@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../Style/sidebar.css";
 import navitem from '../../assets/NavItem6.png'
 import navitem1 from '../../assets/Nav Item 1.png'
@@ -12,42 +11,39 @@ import navitem7 from '../../assets/Nav Item 10.png'
 import navitem8 from '../../assets/Nav Item 11.png'
 import navitem9 from '../../assets/Nav Item 6.png'
 
-const Sidebar= () => {
-  const navigate = useNavigate();
-  const menuItems = [
-    navitem1,
-    navitem2,
-    navitem3,
-    navitem4,
-    navitem5,
-    navitem6,
-    navitem7,
-    navitem8,
-    navitem9
-  ];
+// All sidebar icons in order, including the top icon
+const iconList = [
+  navitem, // top icon (Dashboard)
+  navitem1, // Wallet
+  navitem2, // Activity
+  navitem3, // Orders
+  navitem4, // News
+  navitem5, // Settings
+  navitem6, // Profile
+  navitem7, // Support
+  navitem8, // (extra, if needed)
+  navitem9  // (extra, if needed)
+];
 
+const Sidebar = ({ activeIdx, onItemClick, pageConfigs }) => {
   return (
     <div className="sidebar">
-      <div className="sidebar-top" onClick={() => navigate('/dashboard')} style={{cursor:'pointer'}}>
-        <img src={navitem} alt="Top Icon" className="top-img" />
-      </div>
-
+      {/* Top icon is now part of iconList, so render all icons in one map */}
       <div className="sidebar-icons">
-        {menuItems.map((src, index) => (
+        {iconList.map((src, index) => (
           <div
-            className="icon-wrapper"
+            className={`icon-wrapper${activeIdx === index ? ' active' : ''}`}
             key={index}
             tabIndex={0}
             onClick={() => {
-              console.log('Sidebar icon clicked', index);
-              if(index === 0) {
-                console.log('Sidebar navitem1 clicked');
-                navigate('/wallet');
-              }
+              console.log('Sidebar item path:', pageConfigs[index]?.path);
+              onItemClick(index, pageConfigs[index]?.name, pageConfigs[index]?.color, pageConfigs[index]?.path);
             }}
-            style={{ cursor: index === 0 ? 'pointer' : 'default' }}
+            style={{ cursor: 'pointer', transition: 'transform 0.18s' }}
+            onMouseOver={e => e.currentTarget.style.transform = 'scale(1.08)'}
+            onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
           >
-            <img src={src} alt={`icon-${index}`} className="icon-img" />
+            <img src={src} alt={`icon-${index}`} className={index === 0 ? "top-img" : "icon-img"} />
           </div>
         ))}
       </div>

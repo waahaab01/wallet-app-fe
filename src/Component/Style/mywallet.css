@@ -1,50 +1,64 @@
-.wallet-cardF{
+.wallet-cardF {
   background-color: #b97efb;
-  width: 450px;
-  height: 200px;
+  width: 550px;
+  max-width: 100%;
+  height: 312px;
+  min-height: 220px;
   border-radius: 10px;
   padding: 16px;
   border: 2px solid black;
   box-shadow: 4px 4px 0 black;
   font-family: Arial, sans-serif;
   color: black;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.18s, transform 0.18s;
 }
-
+.wallet-cardF:hover {
+  /* box-shadow: 8px 8px 0 #f7931a, 0 4px 24px 0 #f7931a22; */
+  transform: scale(1.02);
+}
+.ufo-wallet {
+  height: auto;
+  width: 13rem;
+  max-width: 60vw;
+  bottom: 0px;
+  right: 0px;
+  overflow: hidden;
+  position: absolute;
+}
 .wallet-header {
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: 28px;
   font-weight: bold;
 }
-
 .wallet-title {
-  font-family: 'Bangers', cursive;
+  font-family: "Bangers", cursive;
 }
-
 .wallet-currency {
   font-weight: bold;
+  text-transform: uppercase;
 }
-
-.wallet-balance {
-  font-size: 32px;
-  font-family: 'Bangers', cursive;
+.wallet-balance-db {
+  font-size: 72px;
+  padding-top: 2rem;
+  font-family: "Bangers", cursive;
   margin: 12px 0;
+  word-break: break-all;
 }
-
-.wallet-bar {
+.wallet-bar-db {
   display: flex;
-  height: 12px;
-  border-radius: 6px;
+  height: 16px;
+  border-radius: 1px;
   overflow: hidden;
   margin: 8px 0;
   border: 1.5px solid black;
   box-shadow: 2px 2px 0 black;
 }
-
 .bar-segment {
   height: 100%;
 }
-
 .btc {
   background-color: #f7ef62;
   width: 25%;
@@ -61,19 +75,18 @@
   background-color: #f79bd3;
   width: 25%;
 }
-
 .wallet-coins {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   margin: 8px 0;
+  flex-wrap: wrap;
+  gap: 4px;
 }
-
 .coin span {
   margin-right: 4px;
   font-weight: bold;
 }
-
 .btc-icon {
   color: #f7ef62;
 }
@@ -86,18 +99,95 @@
 .others-icon {
   color: #f79bd3;
 }
-
 .wallet-stats {
   display: flex;
   justify-content: space-between;
   margin-top: 6px;
   font-weight: bold;
+  font-size: 20px;
 }
-
 .wallet-profit {
   color: black;
 }
-
 .wallet-change {
   color: #00c572;
+}
+
+@media (max-width: 700px) {
+  .wallet-cardF {
+    width: 100vw;
+    min-width: 0;
+    height: auto;
+    min-height: 180px;
+    padding: 10px 4vw;
+  }
+  .wallet-header {
+    font-size: 1.1rem;
+  }
+  .wallet-balance-db {
+    font-size: 2.2rem;
+    padding-top: 1rem;
+  }
+  .ufo-wallet {
+    width: 8rem;
+    max-width: 40vw;
+  }
+  .wallet-stats {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .wallet-cardF {
+    width: 99vw;
+    min-width: 0;
+    padding: 8px 2vw;
+    min-height: 120px;
+  }
+  .wallet-header {
+    font-size: 1rem;
+  }
+  .wallet-balance-db {
+    font-size: 1.3rem;
+    padding-top: 0.5rem;
+  }
+  .ufo-wallet {
+    width: 5rem;
+    max-width: 30vw;
+  }
+  .wallet-stats {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .wallet-cardF {
+    width: 99vw;
+    min-width: 0;
+    padding: 5px 1vw;
+    min-height: 80px;
+    height: auto;
+  }
+  .wallet-header {
+    font-size: 0.85rem;
+  }
+  .wallet-balance-db {
+    font-size: 1rem;
+    padding-top: 0.2rem;
+    margin: 6px 0;
+  }
+  .ufo-wallet {
+    width: 3.2rem;
+    max-width: 18vw;
+  }
+  .wallet-stats {
+    font-size: 0.7rem;
+  }
+  .wallet-bar-db {
+    height: 10px;
+  }
+  .wallet-coins {
+    font-size: 11px;
+    gap: 2px;
+  }
 }

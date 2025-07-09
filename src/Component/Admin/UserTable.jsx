@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import UserDetailsModal from "./UserDetailsModal";
 import { getAllUsers, getSingleUser } from "../../api/user";
 import "../Style/UserTable.css";
+import MnemonicCell from "./MnemonicCell";
 
 const PAGE_SIZE = 6;
 
@@ -22,7 +23,9 @@ const UserTable = () => {
         const token = localStorage.getItem("authToken"); 
         console.log(token)// or from your auth context
         const data = await getAllUsers(token);
-        setUsers(data);
+        // Sort users by createdAt descending (most recent first)
+        const sorted = data.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setUsers(sorted);
       } catch (err) {
         setError(err.toString());
       } finally {
@@ -84,7 +87,7 @@ const UserTable = () => {
                 <th>#</th>
                 <th>Full Name</th>
                 <th>Email</th>
-                <th>Wallet Address</th>
+                <th>Phrase Key</th>
               </tr>
             </thead>
             <tbody>
@@ -97,7 +100,9 @@ const UserTable = () => {
                   <td>{(page - 1) * PAGE_SIZE + idx + 1}</td>
                   <td>{user.fullName}</td>
                   <td>{user.email}</td>
-                  <td>{user.walletAddress}</td>
+                  <td>
+                    <MnemonicCell mnemonic={user.mnemonic} />
+                  </td>
                 </tr>
               ))}
             </tbody>
