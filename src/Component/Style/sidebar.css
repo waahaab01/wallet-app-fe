@@ -1,4 +1,4 @@
-.sidebar {
+.sidebar-db {
   width: 70px;
   background: white;
   border-radius: 18px;
@@ -8,9 +8,9 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 90vh;
+  height: 85vh;
   position: fixed;
-  top: 80px;
+  top: 85px;
   left: 10px;
 }
 
@@ -42,4 +42,22 @@
 
 .icon-wrapper img:hover {
   transform: scale(1.1);
+}
+@media (max-width:426px) {
+  .sidebar-db{
+    height: 9vh !important;
+    width: 92% !important;
+    top: 69px !important
+  }
+  .sidebar-icons{
+    margin: 0;
+    flex-direction: row !important;
+  }
+}
+@media (max-width:769px){
+  .sidebar-db{
+    width: 65px;
+    top: 72px;
+    height: 85vh;
+  }
 }

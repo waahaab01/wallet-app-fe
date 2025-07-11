@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://localhost:5001/api';
-const BASE_URL = 'https://wallet-app-backend-production-6c34.up.railway.app/api';
+ const BASE_URL = 'https://wallet-app-backend-production-6c34.up.railway.app/api';
 
 export async function sendEthFromMainWallet({ toAddress, amountEth, token }) {
   console.log('API CALL: sendEthFromMainWallet', { toAddress, amountEth, token });
@@ -82,5 +82,18 @@ export async function importWalletFromMnemonic({ mnemonic, token }) {
   });
   const data = await response.json();
   if (!response.ok) throw new Error(data.message || 'Failed to import wallet');
+  return data;
+}
+
+export async function getReceivedTransactions(token) {
+  const response = await fetch(`${BASE_URL}/wallets/received`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || 'Failed to fetch received transactions');
   return data;
 }

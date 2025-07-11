@@ -173,7 +173,7 @@
     flex-direction: column;
     gap: 4px;
   }
-  .watchlist-div{
+  .watchlist-div,.wallet-div{
     padding: 10px;
   }
   .news-containerFirst{

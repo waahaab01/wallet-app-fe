@@ -5,6 +5,7 @@ import BuySellModal from '../Walletdashboard/BuySellModal/BuySellModal';
 import BuyCoinsModal from '../Walletdashboard/BuySellModal/BuyCoinsModal';
 import SellCoinsModal from '../Walletdashboard/BuySellModal/SellCoinsModal';
 import SwapCoinsModal from '../Walletdashboard/SwapCoinsModal';
+import ReceiveCoinModal from '../Walletdashboard/ReceiveCoinModal';
 import plusIcon from '../../assets/logo assets/plus-circle.png';
 import sendIcon from '../../assets/logo assets/Icon (1).png';
 import buySellIcon from '../../assets/logo assets/Icon (2).png';
@@ -55,18 +56,26 @@ const Row = () => {
   const [showBuyCoinsModal, setShowBuyCoinsModal] = useState(false);
   const [showSellCoinsModal, setShowSellCoinsModal] = useState(false);
   const [showSwapCoinsModal, setShowSwapCoinsModal] = useState(false);
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
   const [buySellStep, setBuySellStep] = useState(null);
+  const [token, setToken] = useState(null);
+
+  React.useEffect(() => {
+    const storedToken = localStorage.getItem('authToken');
+    setToken(storedToken);
+  }, []);
 
   const handleButtonClick = (label) => {
     if (label === 'SEND') setShowSendModal(true);
     else if (label === 'BUY / SELL') setShowBuySellModal(true);
     else if (label === 'SWAP') setShowSwapCoinsModal(true);
-    // You can add logic for TOP UP and RECEIVE if you have modals for them
+    else if (label === 'RECEIVE') setShowReceiveModal(true);
+    // You can add logic for TOP UP if you have modal for it
   };
 
   return (
     <>
-      <div className="action-bar">
+      <div className="action-bar-db">
         {buttons.map((btn, idx) => (
           <button
             key={idx}
@@ -101,6 +110,8 @@ const Row = () => {
       <BuyCoinsModal open={showBuyCoinsModal} onClose={() => setShowBuyCoinsModal(false)} />
       <SellCoinsModal open={showSellCoinsModal} onClose={() => setShowSellCoinsModal(false)} />
       <SwapCoinsModal open={showSwapCoinsModal} onClose={() => setShowSwapCoinsModal(false)} />
+      {/* Pass token from localStorage */}
+      <ReceiveCoinModal open={showReceiveModal} onClose={() => setShowReceiveModal(false)} token={token} />
     </>
   );
 };

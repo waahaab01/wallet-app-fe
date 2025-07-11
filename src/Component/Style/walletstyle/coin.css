@@ -1,6 +1,7 @@
 .coins-overview {
-  max-width: 800px;
+  /* max-width: 800px; */
   height: 400px;
+  width: 100%;
   background: white;
   border-radius: 10px;
   padding: 20px;
@@ -13,14 +14,14 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .chart-wrapper {
   position: relative;
   width: 250px;
   height: 250px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .center-label {
@@ -29,7 +30,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .center-label h3 {
@@ -53,7 +54,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .coin-item {

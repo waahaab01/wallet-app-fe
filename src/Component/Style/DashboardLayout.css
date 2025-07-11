@@ -15,7 +15,7 @@
 }
 .dashboard-layout-content {
   flex: 1;
-  padding: 75px 18px 18px 100px;
+  padding: 95px 18px 18px 100px;
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
@@ -37,14 +37,14 @@
     width: 100%;
   }
   .dashboard-layout-content {
-    padding: 18px 2vw 12px 2vw;
+    padding: 80px 2vw 12px 11vw;
     width: 100%;
   }
 }
 
 @media (max-width: 600px) {
   .dashboard-layout-content {
-    padding: 8px 1vw 8px 1vw;
+    padding: 130px 1vw 8px 1vw;
     width: 100%;
   }
 }
@@ -67,15 +67,15 @@
     height: 60px;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 10000;
     overflow-x: auto;
   }
   .sidebar-icons {
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     align-items: center;
     width: 100%;
-    min-width: 0;
+    /* min-width: 0; */
     overflow-x: auto;
   }
 }

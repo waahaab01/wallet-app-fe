@@ -27,7 +27,7 @@ const iconList = [
 
 const Sidebar = ({ activeIdx, onItemClick, pageConfigs }) => {
   return (
-    <div className="sidebar">
+    <div className="sidebar-db">
       {/* Top icon is now part of iconList, so render all icons in one map */}
       <div className="sidebar-icons">
         {iconList.map((src, index) => (

@@ -1,5 +1,5 @@
 /* Responsive action bar for wallet actions */
-.action-bar {
+.action-bar-db {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -52,7 +52,7 @@
 
 /* Large screens (1200px and below) */
 @media (max-width: 1200px) {
-  .action-bar {
+  .action-bar-db {
     gap: 12px;
   }
   .action-button {
@@ -67,7 +67,7 @@
 
 /* Medium screens (900px and below) */
 @media (max-width: 900px) {
-  .action-bar {
+  .action-ba-dbr {
     gap: 10px;
     padding: 14px;
   }
@@ -88,7 +88,7 @@
 
 /* Small screens (600px and below) - stack buttons in column */
 @media (max-width: 600px) {
-  .action-bar {
+  .action-bar-db {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
@@ -114,7 +114,7 @@
 
 /* Extra small screens (400px and below) */
 @media (max-width: 400px) {
-  .action-bar {
+  .action-bar-db {
     gap: 7px;
     padding: 6px 2px;
   }

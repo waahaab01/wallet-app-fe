@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "../Component/Style/walletstyle/walletdash.css";
-import Navwallet from "../Component/Walletdashboard/Navwallet";
+// import Navwallet from "../Component/Walletdashboard/Navwallet";
 import CoinsOverview from "../Component/Walletdashboard/CoinOverview";
 import Walletactivity from "../Component/Walletdashboard/Walletactivity";
 import Linkedwallet from "../Component/Walletdashboard/Linkedwallet";
 import Buttons from "../Component/Walletdashboard/walletbutton";
 import WalletCard from "../Component/Walletdashboard/Walletcard";
-import Walletsidebar from "../Component/Walletdashboard/Walletsidebar";
+// import Walletsidebar from "../Component/Walletdashboard/Walletsidebar";
 import LinkWalletModal from "../Component/Walletdashboard/LinkWalletModal";
 
 function Walletdashboard() {

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import '../Style/walletstyle/uswallet.css';
-import imgUp from '../../assets/wallet/up.png';
-import { fetchWalletsAndBalances, getWalletBarMeta } from '../../utils/walletUtils.js';
-
-const WalletCard = () => {
+import React, { useEffect, useState } from "react";
+import "../Style/walletstyle/uswallet.css";
+import { fetchWalletsAndBalances, getWalletBarMeta } from "../../utils/walletUtils.js";
+import ufo from "../../assets//ufo.png";
+const Mywallet = () => {
   const [wallets, setWallets] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -12,7 +11,7 @@ const WalletCard = () => {
     const load = async () => {
       setLoading(true);
       try {
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem("authToken");
         const { wallets, total } = await fetchWalletsAndBalances(token);
         setWallets(wallets);
         setTotal(total);
@@ -37,51 +36,47 @@ const WalletCard = () => {
   });
 
   return (
-    <div className="wallet-cardus">
+    <div className="wallet-cardF">
+      <img src={ufo} alt="ufo-wallet" className="ufo-wallet"/>
       <div className="wallet-header">
         <span className="wallet-title">My Wallet</span>
-        <span className="wallet-currency">USD ▼</span>
+        <span className="wallet-currency">USD ⌄</span>
       </div>
 
-      <div className="wallet-balance">
-        <h1>
-          {loading ? 'Loading...' : `$${total.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
-        </h1>
+      <div className="wallet-balance-db">
+        {loading ? "Loading..." : `$${total.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
       </div>
 
-      <div className="wallet-bar" style={{ display: 'flex', height: 14, borderRadius: 8, overflow: 'hidden', marginBottom: 8 }}>
+      <div className="wallet-bar-db">
         {barData.map((w, i) => (
           <div
             key={w._id || i}
+            className={`bar-segment ${w.walletType ? w.walletType.toLowerCase() : "others"}`}
             style={{
               width: `${w.percent}%`,
               background: w.color,
-              transition: 'width 0.5s',
-              height: '100%',
+              transition: "width 0.5s"
             }}
             title={`${w.walletType}: ${w.balance}`}
           />
         ))}
       </div>
 
-      <div className="wallet-labels">
+      <div className="wallet-coins">
         {barData.map((w, i) => (
-          <div key={w._id || i} style={{ display: 'flex', alignItems: 'center', marginRight: 12 }}>
-            <img src={w.icon} alt={w.walletType} style={{ width: 22, marginRight: 4 }} />
-            <span style={{ fontWeight: 600 }}>{w.walletType}</span>
-            <span style={{ marginLeft: 6, color: '#888', fontSize: 13 }}>
-              {w.balance}
-            </span>
+          <div className="coin" key={w._id || i}>
+            <img src={w.icon} alt={w.walletType} style={{ width: 18, marginRight: 4, verticalAlign: "middle" }} />
+            {w.walletType?.toUpperCase() || "OTHERS"} <span style={{ color: "#888", fontSize: 13, marginLeft: 4 }}>{w.balance}</span>
           </div>
         ))}
       </div>
 
-      <div className="wallet-footer">
-        <span className="wallet-change-positive">0%</span>
-        <span className="wallet-percent">0% <img src={imgUp} alt="up" /></span>
+      <div className="wallet-stats">
+        <div className="wallet-profit">0%</div>
+        <div className="wallet-change">0%📈</div>
       </div>
     </div>
   );
 };
 
-export default WalletCard;
+export default Mywallet;

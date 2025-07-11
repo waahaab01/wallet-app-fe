@@ -21,14 +21,14 @@ import title5 from "../../assets/logo assets/title5.png";
 import title6 from "../../assets/logo assets/title6.png";
 const pageConfigs = [
   { name: "Dashboard", color: "#BFF6EE", path: "/" }, // index route
-  { name: "Wallet", color: "#e6defe", path: "wallet" },
-  { name: "Activity", color: "#f0fff7", path: "activity-log" },
-  { name: "Orders", color: "#fff0f7", path: "orders" },
+  { name: "Wallet", color: "#EADAFC", path: "wallet" },
+  { name: "Activity", color: "#ebffd1", path: "activity-log" },
+  { name: "Setting", color: "#fff0f7", path: "settings" },
   { name: "News", color: "#f0f7ff", path: "news" },
-  { name: "Settings", color: "#f7fff0", path: "settings" },
-  { name: "Profile", color: "#f0f0ff", path: "profile" },
+  { name: "NFT", color: "#cbe8ff", path: "nft-market-place" },
+  { name: "Profile", color: "#f0f0ff", path: "/settings/profile" },
   { name: "Support", color: "#fff0f0", path: "support" },
-  { name: "Logout", color: "#fffbe6", path: "/logout" }, // keep as is for logout logic
+  { name: "FAQs", color: "#fee1f4", path: "faqs" }, // keep as is for logout logic
 ];
 
 // Navbar logo and title images (separate from sidebar icons)

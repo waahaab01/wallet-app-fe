@@ -1,16 +1,53 @@
-import React, { useState } from 'react';
-import '../Style/walletstyle/walletbutton.css';
-import plus from '../../assets/wallet/plus-circle.png';
-import trend from '../../assets/wallet/trend-up-02.png';
-import trend1 from '../../assets/wallet/trend-down-02.png';
-import currency from '../../assets/wallet/currency-dollar-circle.png';
-import swap from '../../assets/wallet/coins-swap-02.png';
-import SendCoinModal from './SendCoinModal/SendCoinModal';
-import BuySellModal from './BuySellModal/BuySellModal';
-import BuyCoinsModal from './BuySellModal/BuyCoinsModal';
-import SellCoinsModal from './BuySellModal/SellCoinsModal';
-import SwapCoinsModal from './SwapCoinsModal';
+import React, { useState } from "react";
+import "../Style/walletstyle/walletbutton.css";
+import SendCoinModal from "./SendCoinModal/SendCoinModal";
+import BuySellModal from "./BuySellModal/BuySellModal";
+import BuyCoinsModal from "./BuySellModal/BuyCoinsModal";
+import SellCoinsModal from "./BuySellModal/SellCoinsModal";
+import SwapCoinsModal from "./SwapCoinsModal";
+import plusIcon from '../../assets/logo assets/plus-circle.png';
+import sendIcon from '../../assets/logo assets/Icon (1).png';
+import buySellIcon from '../../assets/logo assets/Icon (2).png';
+import receiveIcon from '../../assets/logo assets/Icon (3).png';
+import swapIcon from '../../assets/logo assets/Icon.png';
+import topupBg from '../../assets/logo assets/plus-circle (1).png'; // Example, apni image rakhain
+import sendBg from '../../assets/logo assets/trend-up-02.png';
+import buySellBg from '../../assets/logo assets/currency-dollar-circle.png';
+import receiveBg from '../../assets/logo assets/trend-down-02.png';
+import swapBg from '../../assets/logo assets/coins-swap-02.png';
 
+const buttons = [
+  {
+    label: "TOP UP",
+    bg: "#00e3d8",
+    icon: plusIcon,
+    bgImage: topupBg,
+  },
+  {
+    label: "SEND",
+    bg: "#f79bd3",
+    icon: sendIcon,
+    bgImage: sendBg,
+  },
+  {
+    label: "BUY/SELL",
+    bg: "#fff685",
+    icon: buySellIcon,
+    bgImage: buySellBg,
+  },
+  {
+    label: "RECEIVE",
+    bg: "#b0ff92",
+    icon: receiveIcon,
+    bgImage: receiveBg,
+  },
+  {
+    label: "SWAP",
+    bg: "#ff6b3b",
+    icon: swapIcon,
+    bgImage: swapBg,
+  },
+];
 const Buttons = () => {
   const [showSendModal, setShowSendModal] = useState(false);
   const [showBuySellModal, setShowBuySellModal] = useState(false);
@@ -18,48 +55,39 @@ const Buttons = () => {
   const [showSellCoinsModal, setShowSellCoinsModal] = useState(false);
   const [showSwapCoinsModal, setShowSwapCoinsModal] = useState(false);
   const [buySellStep, setBuySellStep] = useState(null); // 'buy' or 'sell'
-
+  const handleButtonClick = (label) => {
+    if (label === 'SEND') setShowSendModal(true);
+    else if (label === 'BUY / SELL') setShowBuySellModal(true);
+    else if (label === 'SWAP') setShowSwapCoinsModal(true);
+    // You can add logic for TOP UP and RECEIVE if you have modals for them
+  };
   return (
     <>
-      <div className="buttons-container">
-        <div className="row">
-          <div className="btn-card" style={{ backgroundColor: '#20E2C2' }}>
-            <img src={plus} alt="top up" />
-            <span>TOP UP</span>
-          </div>
-          <div
-            className="btn-card"
-            style={{ backgroundColor: '#F8A6D6' }}
-            onClick={() => setShowSendModal(true)}
+      <div className="action-bar">
+        {buttons.map((btn, idx) => (
+          <button
+            key={idx}
+            className="action-button-wallet"
+            style={{
+              backgroundColor: btn.bg,
+              backgroundImage: `url(${btn.bgImage})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "bottom right",
+              backgroundSize: "60px 60px",
+              width:"100%" // adjust as needed
+            }}
+            onClick={() => handleButtonClick(btn.label)}
           >
-            <img src={trend} alt="send" />
-            <span>SEND</span>
-          </div>
-        </div>
-        <div className="row">
-          <div
-            className="btn-card"
-            style={{ backgroundColor: '#F9EF74' }}
-            onClick={() => setShowBuySellModal(true)}
-          >
-            <img src={currency} alt="buy/sell" />
-            <span>BUY / SELL</span>
-          </div>
-          <div className="btn-card" style={{ backgroundColor: '#A9FA91' }}>
-            <img src={trend1} alt="receive" />
-            <span>RECEIVE</span>
-          </div>
-        </div>
-        <div className="row">
-          <div
-            className="btn-card full"
-            style={{ backgroundColor: '#FF7035' }}
-            onClick={() => setShowSwapCoinsModal(true)}
-          >
-            <img src={swap} alt="swap" />
-            <span>SWAP</span>
-          </div>
-        </div>
+            <span className="btn-icon">
+              <img
+                src={btn.icon}
+                alt={btn.label}
+                style={{ width: 28, height: 28 }}
+              />
+            </span>
+            <span className="btn-label">{btn.label}</span>
+          </button>
+        ))}
       </div>
       <SendCoinModal open={showSendModal} onClose={() => setShowSendModal(false)} />
       <BuySellModal

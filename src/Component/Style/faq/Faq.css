@@ -1,0 +1,191 @@
+/* FAQComponent.css */
+
+.faq-wrapper {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem 1rem;
+    /* background-color: #ebffd1; */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+  }
+  
+  .faq-title {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 0.3rem;
+  }
+  
+  .faq-subtitle {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .faq-list {
+    text-align: left;
+    margin-top: 50px;
+  }
+  
+  .faq-item {
+    /* background: white; */
+    /* border-radius: 10px; */
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    /* border: 2px solid #000; */
+    transition: all 0.3s ease;
+    border-bottom: 1px solid black;
+  }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .faq-toggle {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+  
+  .faq-answer {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .faq-contact {
+    background-color: #ff9fd1;
+    background-image: url('../../../assets/wallet/Vector.png'); /* optional pattern background */
+    border-radius: 8px;
+    margin-top: 1rem;
+    padding: 3rem;
+    box-shadow: 4px 4px 0 black;
+    text-align: center;
+  }
+  
+  .faq-contact-content {
+    color: #000;
+    margin-top: 30px;
+  }
+  
+  .contact-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .contact-sub {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .contact-button {
+    margin-top: 1rem;
+    background-color: #00ffe4;
+    color: #000;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 2rem;
+    width: 396px;
+    height: 54px;
+    box-shadow: 4px 4px 0 black;
+  }
+  
+  .contact-button:hover {
+    background-color: #00c9b7;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 900px) {
+    .faq-wrapper {
+      padding: 1.5rem 0.5rem;
+      max-width: 98vw;
+    }
+    .faq-title {
+      font-size: 2rem;
+    }
+    .faq-subtitle {
+      font-size: 0.95rem;
+    }
+    .faq-list {
+      margin-top: 30px;
+    }
+    .faq-item {
+      padding: 0.75rem 0;
+      font-size: 1rem;
+    }
+    .faq-question {
+      font-size: 1rem;
+    }
+    .faq-answer {
+      font-size: 0.95rem;
+    }
+    .faq-contact {
+      padding: 2rem 1rem;
+    }
+    .contact-title {
+      font-size: 1.2rem;
+    }
+    .contact-button {
+      font-size: 1.2rem;
+      height: 44px;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .faq-wrapper {
+      padding: 1rem 0.2rem;
+      max-width: 100vw;
+    }
+    .faq-title {
+      font-size: 1.4rem;
+    }
+    .faq-subtitle {
+      font-size: 0.9rem;
+    }
+    .faq-list {
+      margin-top: 18px;
+    }
+    .faq-item {
+      padding: 0.5rem 0;
+      font-size: 0.98rem;
+    }
+    .faq-question {
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.98rem;
+    }
+    .faq-answer {
+      font-size: 0.92rem;
+    }
+    .faq-contact {
+      padding: 1.2rem 0.5rem;
+    }
+    .faq-contact-content {
+      margin-top: 18px;
+    }
+    .contact-title {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .contact-sub {
+      font-size: 0.9rem;
+    }
+    .contact-button {
+      font-size: 1rem;
+      height: 38px;
+      padding: 0.4rem 0.7rem;
+      width: 100%;
+      min-width: 0;
+      max-width: 100vw;
+    }
+  }
+  

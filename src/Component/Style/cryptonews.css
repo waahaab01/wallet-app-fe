@@ -20,7 +20,7 @@
 .news-containerFirst {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-top: 20px;
   justify-content: space-between;
 
@@ -51,7 +51,7 @@
 }
 
 .news-titleFirst {
-  font-size: 18px;
+  font-size:18px;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -69,7 +69,7 @@
   margin-top: 10px;
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .tagFirst {
@@ -83,18 +83,26 @@
 /* Tag Colors */
 .crypto {
   background-color: #a259ff;
+  padding: 10px;
+  border-radius: 44px;
 }
 
 .bitcoin {
   background-color: #f56eb3;
+  padding: 10px;
+  border-radius: 44px;
 }
 
 .blockchain {
   background-color: #00c39a;
+  padding: 10px;
+  border-radius: 44px;
 }
 
 .defipulse {
   background-color: #a4eb49;
+  padding: 10px;
+  border-radius: 44px;
 }
 
 .button-containerFirst {

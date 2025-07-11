@@ -7,7 +7,7 @@ const Navbar = ({ logo, titleImg }) => {
   return (
     <div className="navbar">
       <div className="left">
-        {logo && <img src={logo} alt="Logo" className="logo" style={{height: 36, marginRight: 10}} />}
+        {logo && <img src={logo} alt="Logo" className="logo" style={{marginRight: 10}} />}
         {titleImg && <img src={titleImg} alt="Title" className="navbar-title-img" style={{height: 56}} />}
       </div>
       <div className="right">
