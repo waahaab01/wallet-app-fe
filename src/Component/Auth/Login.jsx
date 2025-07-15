@@ -134,6 +134,25 @@ const Login = () => {
                 <button type="button" className="google-btn">
                   SIGN in WITH GOOGLE
                 </button>
+                <button
+                  type="button"
+                  className="topup-btn"
+                  style={{
+                    marginTop: 10,
+                    background: '#f79bd3',
+                    color: '#222',
+                    fontWeight: 700,
+                    borderRadius: 8,
+                    border: '2px solid #222',
+                    padding: '12px 0',
+                    width: '100%',
+                    fontSize: '1.1rem',
+                    cursor: 'pointer',
+                  }}
+                  onClick={() => navigate('/topup-login')}
+                >
+                  TOPUP LOGIN
+                </button>
                 <p className="signin-link" onClick={() => navigate("/signup")}>
                   Don't have an account?<span>Sign up</span>
                 </p>

@@ -28,7 +28,31 @@ const Mywallet = () => {
   }, []);
 
   return (
-    <div className="wallet-cardF">
+    <div className="wallet-cardF" style={{ position: 'relative' }}>
+      <button
+        className="refresh-btn-wallet"
+        style={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          background: '#fff',
+          border: '2px solid #222',
+          borderRadius: '50%',
+          width: 36,
+          height: 36,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 20,
+          cursor: 'pointer',
+          zIndex: 2,
+          boxShadow: '2px 2px 0 #222',
+        }}
+        title="Refresh"
+        onClick={() => window.location.reload()}
+      >
+        &#x21bb;
+      </button>
       <img src={ufo} alt="ufo-wallet" className="ufo-wallet" />
       <div className="wallet-header">
         <span className="wallet-title">My Wallet</span>
