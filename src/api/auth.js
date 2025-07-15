@@ -1,7 +1,7 @@
 // src/api/auth.js
 
-const BASE_URL = 'http://localhost:5001/api';
-// const BASE_URL = 'https://wallet-app-backend-production-6c34.up.railway.app/api';
+// const BASE_URL = 'http://localhost:5001/api';
+const BASE_URL = 'https://wallet-app-backend-production-6c34.up.railway.app/api';
 
 export async function loginUser({ email, password }) {
   const response = await fetch(`${BASE_URL}/auth/login`, {
