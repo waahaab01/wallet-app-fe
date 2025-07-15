@@ -25,6 +25,10 @@ import AccountSecurity from "./Pages/AccountSecurity";
 import LinkWallet from "./Pages/LinkWallet";
 import Notifications from "./Pages/Notifications";
 import SettingsSidebar from "./Component/SettingsSidebar";
+import PaymentMethods from "./Pages/PaymentMethods";
+import CryptoNews from "./Pages/CryptoNews";
+import NewsDetail from "./Pages/NewsDetail";
+import MarketplacePage from "./Pages/MarketplacePage";
 
 function App() {
   return (
@@ -53,6 +57,9 @@ function App() {
           <Route path="activity-log" element={<ActivityLog />} />
           <Route path="faqs" element={<FAQComponent />} />
           <Route path="nft-market-place" element={<NftPage />} />
+          <Route path="crypto-news" element={<CryptoNews />} />
+          <Route path="crypto-news/:id" element={<NewsDetail />} />
+          <Route path="marketplace" element={<MarketplacePage />} />
           {/* Add more nested routes as needed */}
         </Route>
 
@@ -81,6 +88,7 @@ function App() {
           <Route path="security" element={<AccountSecurity />} />
           <Route path="kyc" element={<LinkWallet />} />
           <Route path="notifications" element={<Notifications />} />
+          <Route path="payments" element={<PaymentMethods />} />
           {/* Add other settings routes here as needed */}
         </Route>
 

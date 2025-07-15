@@ -2,13 +2,15 @@ import React from "react";
 import SettingsSidebar from "../Component/SettingsSidebar";
 import avatarImg from "../assets/Portrait.png";
 import metamaskImg from "../assets/logo assets/Icon (4).png"; // Placeholder for Metamask icon
+import profilebg from "../assets/Image wrap.png"
 
 const LinkWallet = () => {
   return (
     <div className="settings-page-wrapper">
-      {/* <SettingsSidebar /> */}
+      <SettingsSidebar />
       <main className="settings-main-content">
-        {/* Profile Header */}
+      <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />
+      {/* Profile Header */}
         <section className="profile-header">
           <img src={avatarImg} alt="avatar" className="profile-avatar" />
           <div className="profile-header-info">

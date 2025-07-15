@@ -9,7 +9,7 @@ const ProfileSettings = () => {
       <SettingsSidebar />
       <main className="settings-main-content">
         {/* Profile Header */}
-        <img src={profilebg}/>
+        <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />
         <section className="profile-header">
           <img src={avatarImg} alt="avatar" className="profile-avatar" />
           <div className="profile-header-info">

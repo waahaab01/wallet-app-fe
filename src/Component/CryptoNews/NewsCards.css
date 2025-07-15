@@ -1,0 +1,130 @@
+.news-cards-section {
+  background: #ffe6db;
+  padding: 24px 0 40px 0;
+  min-height: 100vh;
+}
+.news-cards-headline {
+  font-family: 'Bebas Neue', cursive, sans-serif;
+  font-size: 1.2rem;
+  color: #111;
+  margin-left: 18px;
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+}
+.news-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 22px;
+  max-width: 1100px;
+  margin: 0 auto 32px auto;
+}
+.news-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 black;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1.5px solid #222;
+  min-width: 0;
+}
+.news-card-img {
+  /* width: 140px;
+  height: 120px; */
+  object-fit: cover;
+  /* border-radius: 10px 0 0 10px; */
+}
+.news-card-info {
+  padding: 14px 16px 10px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  flex: 1 1 0;
+}
+.news-card-date {
+  color: #ff8843;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.news-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+.news-card-desc {
+  font-size: 0.97rem;
+  color: #444;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.news-card-tags {
+  display: flex;
+  gap: 8px;
+}
+.news-card-tag {
+  background: #e6d6ff;
+  color: #7c3aed;
+  font-size: 0.82rem;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-weight: 600;
+}
+.news-cards-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.news-cards-pagination button {
+  background: #fff;
+  border: 1.5px solid #222;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 1rem;
+  color: #222;
+  cursor: pointer;
+  margin: 0 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.news-cards-pagination button.active {
+  background: #ff8843;
+  color: #fff;
+  font-weight: 700;
+}
+.news-cards-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media (max-width: 700px) {
+  .news-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .news-card {
+    flex-direction: column;
+    align-items: center;
+  }
+  .news-card-img {
+    width: 100%;
+    height: 140px;
+    border-radius: 10px 10px 0 0;
+  }
+  .news-card-info {
+    padding: 10px 10px 8px 10px;
+  }
+}
+@media (max-width: 480px) {
+  .news-cards-section {
+    padding: 10px 0 20px 0;
+  }
+  .news-cards-headline {
+    margin-left: 8px;
+    font-size: 1rem;
+  }
+  .news-card-title {
+    font-size: 0.98rem;
+  }
+} 

@@ -3,9 +3,9 @@ import "../Style/navbar.css";
 import bell from "../../assets/bell.png";
 import avatar from "../../assets/Portrait.png";
 
-const Navbar = ({ logo, titleImg }) => {
+const Navbar = ({ logo, titleImg, bgColor }) => {
   return (
-    <div className="navbar">
+    <div className="navbar" style={{ backgroundColor: bgColor }}>
       <div className="left">
         {logo && <img src={logo} alt="Logo" className="logo" style={{marginRight: 10}} />}
         {titleImg && <img src={titleImg} alt="Title" className="navbar-title-img" style={{height: 56}} />}

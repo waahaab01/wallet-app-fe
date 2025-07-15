@@ -1,13 +1,15 @@
 import React from "react";
 import SettingsSidebar from "../Component/SettingsSidebar";
 import avatarImg from "../assets/Portrait.png";
+import profilebg from "../assets/Image wrap.png"
 
 const AccountSecurity = () => {
   return (
     <div className="settings-page-wrapper">
       <SettingsSidebar />
       <main className="settings-main-content">
-        {/* Profile Header */}
+      <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />
+      {/* Profile Header */}
         <section className="profile-header">
           <img src={avatarImg} alt="avatar" className="profile-avatar" />
           <div className="profile-header-info">

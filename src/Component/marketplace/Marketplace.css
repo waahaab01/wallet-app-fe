@@ -1,0 +1,226 @@
+.marketplace-root {
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: flex-start;
+  /* background: #f8d6e5; */
+  /* padding: 16px 0; */
+}
+
+.marketplace-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.7rem;
+  align-items: flex-start;
+}
+
+.marketplace-card {
+  width: 250px;
+  height: 245px;
+  min-width: 150px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 black;
+  border: 2px solid #222;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.marketplace-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+.marketplace-coin-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  /* border: 1.5px solid #222; */
+  background: #fff;
+}
+
+.marketplace-coin-name {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.marketplace-card-price {
+  font-size: 60px;
+  font-weight: 400;
+  margin: 2px 0 0 0;
+  letter-spacing: 0px;
+}
+
+.marketplace-card-percent {
+  font-size: 0.95rem;
+  color: #3ecf8e;
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.marketplace-arrow {
+  color: #3ecf8e;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.marketplace-percent {
+  /* color: #3ecf8e;
+  font-weight: 700; */
+    font-size: 14px;
+  font-weight: bold;
+  color: #55E265;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 90px;
+  background-color: #55e26533;
+  height: 30px;
+  width: 90px;
+  justify-content: center;
+}
+
+.marketplace-graph {
+  width: 100%;
+  height: 38px;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  border-radius: 0 0 8px 8px;
+  background: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Graphs for each coin (SVG background for simplicity) */
+.graph-btc {
+  background: url('data:image/svg+xml;utf8,<svg width="170" height="38" xmlns="http://www.w3.org/2000/svg"><polyline points="0,30 20,25 40,28 60,18 80,22 100,10 120,18 140,12 170,20" fill="none" stroke="%23ffe97a" stroke-width="3"/><polygon points="0,38 0,30 20,25 40,28 60,18 80,22 100,10 120,18 140,12 170,20 170,38" fill="%23fffbd3" opacity="0.7"/></svg>') no-repeat center/cover;
+}
+.graph-eth {
+  background: url('data:image/svg+xml;utf8,<svg width="170" height="38" xmlns="http://www.w3.org/2000/svg"><polyline points="0,30 20,28 40,22 60,18 80,20 100,12 120,20 140,18 170,22" fill="none" stroke="%23b6f7a0" stroke-width="3"/><polygon points="0,38 0,30 20,28 40,22 60,18 80,20 100,12 120,20 140,18 170,22 170,38" fill="%23ebffd1" opacity="0.7"/></svg>') no-repeat center/cover;
+}
+.graph-sol {
+  background: url('data:image/svg+xml;utf8,<svg width="170" height="38" xmlns="http://www.w3.org/2000/svg"><polyline points="0,32 20,28 40,30 60,22 80,18 100,20 120,12 140,18 170,24" fill="none" stroke="%23c7b6f7" stroke-width="3"/><polygon points="0,38 0,32 20,28 40,30 60,22 80,18 100,20 120,12 140,18 170,24 170,38" fill="%23eadafc" opacity="0.7"/></svg>') no-repeat center/cover;
+}
+.graph-bnb {
+  background: url('data:image/svg+xml;utf8,<svg width="170" height="38" xmlns="http://www.w3.org/2000/svg"><polyline points="0,34 20,30 40,28 60,24 80,20 100,18 120,22 140,20 170,28" fill="none" stroke="%2390e6f7" stroke-width="3"/><polygon points="0,38 0,34 20,30 40,28 60,24 80,20 100,18 120,22 140,20 170,28 170,38" fill="%23d3f6ff" opacity="0.7"/></svg>') no-repeat center/cover;
+}
+
+.marketplace-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 16px;
+  justify-content: flex-start;
+}
+
+.marketplace-btn {
+  width: 120px;
+  height: 48px;
+  border-radius: 8px;
+  border: 2px solid #222;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  margin-bottom: 0;
+}
+
+.buy-sell {
+  background: #fffbd3;
+  color: #222;
+}
+
+.swap {
+  background: #ffb48a;
+  color: #222;
+}
+
+.marketplace-btn:active {
+  transform: scale(0.97);
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.marketplace-page-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  .marketplace-cards {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .marketplace-card {
+    width: 45vw;
+    min-width: 140px;
+    max-width: 200px;
+  }
+  .marketplace-actions {
+    margin-left: 0;
+    margin-top: 16px;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .marketplace-page-wrapper {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .marketplace-root {
+    padding: 8px 0;
+  }
+  .marketplace-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .marketplace-card {
+    width: 90vw;
+    min-width: 120px;
+    max-width: 98vw;
+  }
+  .marketplace-actions {
+    flex-direction: row;
+    gap: 8px;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .marketplace-btn {
+    width: 48vw;
+    min-width: 100px;
+    font-size: 1rem;
+    height: 42px;
+  }
+  .marketplace-page-wrapper {
+    gap: 10px;
+  }
+} 

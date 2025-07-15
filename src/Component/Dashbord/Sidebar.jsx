@@ -10,6 +10,7 @@ import navitem6 from '../../assets/Nav Item 8.png'
 import navitem7 from '../../assets/Nav Item 10.png'
 import navitem8 from '../../assets/Nav Item 11.png'
 import navitem9 from '../../assets/Nav Item 6.png'
+import navitemCryptoNews from '../../assets/Nav Item 1.png'; // Use the same icon as in DashboardLayout
 
 // All sidebar icons in order, including the top icon
 const iconList = [
@@ -18,11 +19,12 @@ const iconList = [
   navitem2, // Activity
   navitem3, // Orders
   navitem4, // News
+ // Crypto News
   navitem5, // Settings
   navitem6, // Profile
   navitem7, // Support
-  navitem8, // (extra, if needed)
-  navitem9  // (extra, if needed)
+  navitemCryptoNews, // (extra, if needed)
+  // navitem9  // (extra, if needed)
 ];
 
 const Sidebar = ({ activeIdx, onItemClick, pageConfigs }) => {
