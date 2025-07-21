@@ -1,5 +1,5 @@
 .marketplace-root {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   /* justify-content: center; */
   align-items: flex-start;
@@ -9,7 +9,7 @@
 
 .marketplace-cards {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   gap: 1.2rem;
   align-items: flex-start;
 }
@@ -125,7 +125,12 @@
   margin-left: 16px;
   justify-content: flex-start;
 }
-
+.marketplace-action-bar{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: -webkit-fill-available;
+}
 .marketplace-btn {
   width: 120px;
   height: 48px;
@@ -173,14 +178,17 @@
 }
 
 @media (max-width: 900px) {
+  .marketplace-action-bar{
+    display: none;
+  }
   .marketplace-cards {
     flex-wrap: wrap;
     gap: 12px;
   }
   .marketplace-card {
-    width: 45vw;
+    /* width: 45vw;
     min-width: 140px;
-    max-width: 200px;
+    max-width: 200px; */
   }
   .marketplace-actions {
     margin-left: 0;

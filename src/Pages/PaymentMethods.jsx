@@ -39,7 +39,7 @@ const paymentMethods = [
 const PaymentMethods = () => {
   return (
     <div className="settings-page-wrapper">
-      <SettingsSidebar />
+      {/* <SettingsSidebar /> */}
       <main className="settings-main-content">
                 <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />
         

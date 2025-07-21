@@ -9,31 +9,34 @@ import navLogo2 from "../../assets/logo assets/purple.png";
 import navLogo3 from "../../assets/logo assets/logo.png";
 import navLogo4 from "../../assets/logo assets/pink.png";
 import navLogo5 from "../../assets/logo assets/yellow.png";
-import navLogo6 from "../../assets/Nav Item 7.png";
-import navLogo7 from "../../assets/Nav Item 8.png";
+import navLogo6 from "../../assets/logo assets/blue.png";
+import navLogo7 from "../../assets/logo assets/red.png";
 import navLogo8 from "../../assets/Nav Item 10.png";
-import navLogo9 from "../../assets/Nav Item 11.png";
+import navLogo9 from "../../assets/logo assets/yellow.png";
+import navLogo10 from "../../assets/logo assets/pink.png";
+import navLogo11 from "../../assets/logo assets/purple.png";
+
 import title1 from "../../assets/logo assets/title 1.png";
 import title2 from "../../assets/logo assets/title2.png";
 import title3 from "../../assets/logo assets/title3.png";
 import title4 from "../../assets/logo assets/title4.png";
 import title5 from "../../assets/logo assets/title5.png";
 import title6 from "../../assets/logo assets/title6.png";
-import navitemCryptoNews from '../../assets/nft.png'; // Use a relevant icon for Crypto News
+import title7 from "../../assets/logo assets/setting-title.png";
+import title9 from "../../assets/logo assets/support-title.png";
+import title8 from "../../assets/logo assets/inbox-title.png";
 const pageConfigs = [
-  { name: "Dashboard", color: "#BFF6EE", path: "/" }, // index route
+  { name: "Dashboard", color: "#BFF6EE", path: "/" }, 
   { name: "Wallet", color: "#EADAFC", path: "wallet" },
   { name: "Activity", color: "#ebffd1", path: "activity-log" },
-  { name: "Setting", color: "#fff0f7", path: "marketplace" },
-  { name: "News", color: "#fffbd3", path: "crypto-news" },
-  // { name: "Crypto News", color: "#ffe6db", path: "crypto-news" }, // New Crypto News item
-  { name: "NFT", color: "#cbe8ff", path: "nft-market-place" },
-  { name: "Profile", color: "#f0f0ff", path: "nft-market-place" },
-  { name: "Support", color: "#fff0f0", path: "/settings/profile" },
-  { name: "FAQs", color: "#fee1f4", path: "faqs" }, // keep as is for logout logic
+  { name: "News", color: "#fee1f4", path: "marketplace" },
+  { name: "Settings", color: "#fffbd3", path: "forecast" },
+  { name: "Profile", color: "#cbe8ff", path: "nft-market-place" },
+  { name: "Support", color: "#fff0f0", path: "crypto-news" },
+  { name: "Inbox", color: "#e6defe", path: "inbox" },
+  { name: "Settings", color: "#fffbd3", path: "settings" },
+  { name: "FAQS", color: "#fee1f4", path: "faqs" },
 ];
-
-// Navbar logo and title images (separate from sidebar icons)
 const navbarLogos = [
   navLogo1,
   navLogo2,
@@ -42,9 +45,9 @@ const navbarLogos = [
   navLogo5,
   navLogo6,
   navLogo7,
-  navLogo8,
+  navLogo11,
   navLogo9,
-  navitemCryptoNews, // Add Crypto News icon to navbarLogos
+  navLogo10// Add Crypto News icon to navbarLogos
 ];
 const navbarTitles = [
   frame,
@@ -54,34 +57,59 @@ const navbarTitles = [
   title4,
   title5,
   title6,
-  navLogo9,
-  navitemCryptoNews, // Add Crypto News title image if needed
+  title7,
+  title8,
+  title9,
 ];
 
 const DashboardLayout = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Find the active index based on the current path
   const getActiveIdx = () => {
-    const currentPath = location.pathname.toLowerCase();
-    return pageConfigs.findIndex(cfg => {
-      // Always compare with leading slash
+    const currentPath = location.pathname;
+    console.log('Current path:', currentPath);
+    
+    // Check for exact matches first
+    for (let i = 0; i < pageConfigs.length; i++) {
+      const cfg = pageConfigs[i];
       let cfgPath = cfg.path.startsWith("/") ? cfg.path : "/" + cfg.path;
-      return currentPath === cfgPath.toLowerCase();
-    });
+      
+      if (currentPath === cfgPath) {
+        console.log('Exact match found at index:', i, 'for path:', cfgPath);
+        return i;
+      }
+    }
+    
+    // Check for partial matches (for nested routes)
+    for (let i = 0; i < pageConfigs.length; i++) {
+      const cfg = pageConfigs[i];
+      let cfgPath = cfg.path.startsWith("/") ? cfg.path : "/" + cfg.path;
+      
+      if (currentPath.startsWith(cfgPath) && cfgPath !== "/") {
+        console.log('Partial match found at index:', i, 'for path:', cfgPath);
+        return i;
+      }
+    }
+    
+    // Default to dashboard (index 0)
+    console.log('No match found, defaulting to dashboard');
+    return 0;
   };
 
   const activeIdx = getActiveIdx();
   const bgColor = pageConfigs[activeIdx]?.color || pageConfigs[0].color;
 
   const handleSidebarClick = (idx, name, color, path) => {
+    console.log('Sidebar click:', { idx, name, path });
+    
     if (path === "/logout") {
       localStorage.removeItem("authToken");
       navigate("/login");
     } else if (path === "/") {
       navigate("/");
     } else if (path) {
+      // Navigate to the path
       navigate(path);
     }
   };

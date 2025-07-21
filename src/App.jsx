@@ -29,6 +29,7 @@ import PaymentMethods from "./Pages/PaymentMethods";
 import CryptoNews from "./Pages/CryptoNews";
 import NewsDetail from "./Pages/NewsDetail";
 import MarketplacePage from "./Pages/MarketplacePage";
+import ForecastPage from "./Pages/forecast/ForecastPage";
 
 function App() {
   return (
@@ -55,12 +56,24 @@ function App() {
           <Route index element={<Dashbord />} />
           <Route path="wallet" element={<Walletdashboard />} />
           <Route path="activity-log" element={<ActivityLog />} />
-          <Route path="faqs" element={<FAQComponent />} />
-          <Route path="nft-market-place" element={<NftPage />} />
+          {/* <Route path="orders" element={<Dashbord />} /> Temporary - create OrdersPage */}
           <Route path="crypto-news" element={<CryptoNews />} />
           <Route path="crypto-news/:id" element={<NewsDetail />} />
+          <Route path="inbox" element={<FAQComponent />} />
+          <Route path="faqs" element={<FAQComponent />} />
+          <Route path="nft-market-place" element={<NftPage />} />
           <Route path="marketplace" element={<MarketplacePage />} />
-          {/* Add more nested routes as needed */}
+          <Route path="forecast" element={<ForecastPage />} />
+          
+          {/* Settings routes nested under dashboard */}
+          <Route path="settings" element={<SettingsSidebar />}>
+            <Route index element={<ProfileSettings />} />
+            <Route path="profile" element={<ProfileSettings />} />
+            <Route path="security" element={<AccountSecurity />} />
+            <Route path="kyc" element={<LinkWallet />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="payments" element={<PaymentMethods />} />
+          </Route>
         </Route>
 
         {/* Admin-only routes */}
@@ -72,25 +85,6 @@ function App() {
             </RoleProtectedRoute>
           }
         />
-
-        {/* Settings routes */}
-        <Route
-          path="/settings"
-          element={
-            <RoleProtectedRoute allowedRoles={["user"]}>
-              <DashboardLayout>
-                <SettingsSidebar />
-              </DashboardLayout>
-            </RoleProtectedRoute>
-          }
-        >
-          <Route path="profile" element={<ProfileSettings />} />
-          <Route path="security" element={<AccountSecurity />} />
-          <Route path="kyc" element={<LinkWallet />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="payments" element={<PaymentMethods />} />
-          {/* Add other settings routes here as needed */}
-        </Route>
 
         {/* Catch-all: if no role or not allowed, redirect to login */}
         <Route path="*" element={<Navigate to="/login" replace />} />

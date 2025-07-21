@@ -1,0 +1,40 @@
+.forecast-page {
+  width: 100%;
+  padding: 24px;
+  background-color: #fef3c7;
+  display: flex;
+  justify-content: center;
+}
+
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .forecast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .forecast-grid {
+    grid-template-columns: 1fr;
+  }
+  .forecast-page {
+    padding: 16px;
+  }
+  .forecast-container {
+    gap: 16px;
+  }
+} 

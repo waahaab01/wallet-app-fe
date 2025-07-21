@@ -156,10 +156,14 @@
 @media (max-width: 500px) {
   .crypto-trend-chart-root {
     padding: 2px 0 2px 0;
-    border-radius: 0;
+    /* border-radius: 0; */
     border-left: none;
+    width: 90%;
     border-right: none;
   }
+  .trend-range-btn{
+    padding: unset;
+  } 
   .crypto-trend-header {
     padding: 0 2vw;
   }

@@ -6,7 +6,7 @@ import profilebg from "../assets/Image wrap.png"
 const ProfileSettings = () => {
   return (
     <div className="settings-page-wrapper">
-      <SettingsSidebar />
+      {/* <SettingsSidebar /> */}
       <main className="settings-main-content">
         {/* Profile Header */}
         <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />

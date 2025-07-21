@@ -1,0 +1,100 @@
+.coin-forecast-card {
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 4px 4px 0 black;
+  font-family: 'Bangers', cursive;
+  position: relative;
+  overflow: hidden;
+}
+.forecast-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.forecast-coin-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forecast-coin-icon img {
+  width: 28px;
+  height: 28px;
+}
+.forecast-price {
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #222;
+  letter-spacing: 1px;
+}
+.forecast-percent-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e5f9e8;
+  color: #55e265;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 6px 14px;
+  border-radius: 90px;
+  margin-bottom: 12px;
+}
+.forecast-percent-icon {
+  font-size: 1.2rem;
+}
+.forecast-coin-info {
+  margin-bottom: 8px;
+}
+.forecast-coin-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+}
+.forecast-coin-balance {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #888;
+}
+.forecast-chart {
+  position: absolute;
+  bottom: 10px;
+  right: -20px;
+  width: 180px;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .forecast-price {
+    font-size: 2.4rem;
+  }
+  .forecast-coin-name {
+    font-size: 1.2rem;
+  }
+  .forecast-coin-balance {
+    font-size: 1rem;
+  }
+  .forecast-chart {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coin-forecast-card {
+    padding: 16px;
+  }
+  .forecast-price {
+    font-size: 2rem;
+  }
+  .forecast-chart {
+    opacity: 0.7;
+    width: 120px;
+    bottom: 5px;
+  }
+} 

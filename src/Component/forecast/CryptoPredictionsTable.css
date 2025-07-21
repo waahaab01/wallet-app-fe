@@ -1,0 +1,129 @@
+.predictions-table-root {
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 1200px;
+  box-shadow: 4px 4px 0 black;
+  font-family: 'Bangers', cursive;
+}
+.predictions-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.predictions-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.download-report-btn {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 2px solid #222;
+  padding: 10px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 2px 2px 0 black;
+  transition: background 0.2s;
+}
+.download-report-btn:hover {
+  background: #2563eb;
+}
+.predictions-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.predictions-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.1rem;
+}
+.predictions-table th, .predictions-table td {
+  padding: 16px 8px;
+  text-align: left;
+  border-bottom: 1px solid #e7e7e7;
+  white-space: nowrap;
+}
+.predictions-table tr:last-child td {
+  border-bottom: none;
+}
+.predictions-table th {
+  font-weight: 700;
+  color: #888;
+}
+.sort-icon {
+  color: #ccc;
+  margin-left: 4px;
+}
+.pred-coin-cell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.pred-coin-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.pred-coin-name {
+  font-weight: 700;
+  color: #222;
+}
+.pred-coin-symbol {
+  font-size: 0.95rem;
+  color: #888;
+}
+.pred-change-up {
+  color: #55e265;
+  font-weight: 700;
+}
+.pred-change-down {
+  color: #ef4444;
+  font-weight: 700;
+}
+.pred-change-arrow {
+  margin-right: 4px;
+}
+.pred-trade-btn {
+  background: #f97316;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 2px solid #222;
+  padding: 8px 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 black;
+  transition: background 0.2s;
+}
+.pred-trade-btn:hover {
+  background: #ea580c;
+}
+.predictions-table input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #222;
+  border-radius: 4px;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .predictions-table-root {
+    padding: 16px;
+  }
+} 

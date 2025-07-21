@@ -28,7 +28,28 @@ function Walletdashboard() {
             <div className="slider-cont">
               <div className="slider-hd">
                 <h1>LINKED WALLET</h1>
-                <button onClick={() => setShowLinkWallet(true)} className="wal-btn">LINK WALLET</button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button onClick={() => setShowLinkWallet(true)} className="wal-btn">LINK WALLET</button>
+                  <button
+                    style={{
+                      background: '#fff',
+                      border: '2px solid #222',
+                      borderRadius: '50%',
+                      width: '38px',
+                      height: '38px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '22px',
+                      cursor: 'pointer',
+                      boxShadow: '2px 2px 0 #222',
+                    }}
+                    title="Refresh"
+                    onClick={() => window.location.reload()}
+                  >
+                    &#x21bb;
+                  </button>
+                </div>
               </div>
                     <LinkWalletModal open={showLinkWallet} onClose={() => setShowLinkWallet(false)} />
 

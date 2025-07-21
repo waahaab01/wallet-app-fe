@@ -33,7 +33,7 @@ const Linkedwallet = () => {
           })
         );
         setWallets(walletsWithBalances);
-      } catch {
+      } catch { 
         setWallets([]);
       } finally {
         setLoading(false);

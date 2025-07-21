@@ -1,0 +1,141 @@
+.trend-forecast-chart-root {
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 1200px;
+  box-shadow: 4px 4px 0 black;
+  font-family: 'Bangers', cursive;
+}
+.trend-forecast-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.trend-forecast-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.trend-forecast-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.info-icon {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+.trend-forecast-coin-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.trend-coin-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f7931a;
+  padding: 4px;
+}
+.trend-coin-caret {
+  color: #888;
+}
+.trend-forecast-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.trend-range-btns {
+  display: flex;
+  border: 2px solid #222;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 black;
+}
+.trend-range-btn {
+  background: #fff;
+  border: none;
+  border-right: 2px solid #222;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.trend-range-btn:last-child {
+  border-right: none;
+}
+.trend-range-btn.active, .trend-range-btn:hover {
+  background: #fef3c7;
+}
+.trend-date-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 black;
+}
+.trend-forecast-chart-area {
+  width: 100%;
+}
+.apex-tooltip {
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 black;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tooltip-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.tooltip-title {
+  font-family: 'Bangers', cursive;
+}
+.tooltip-coin {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.tooltip-coin-name {
+  font-size: 1rem;
+  color: #888;
+}
+.tooltip-change {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #55e265;
+}
+
+@media (max-width: 768px) {
+  .trend-forecast-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+} 

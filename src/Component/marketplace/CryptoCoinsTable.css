@@ -162,9 +162,10 @@
 @media (max-width: 500px) {
   .crypto-coins-table-root {
     padding: 2px 0 2px 0;
-    border-radius: 0;
+    /* border-radius: 0; */
     border-left: none;
     border-right: none;
+    width: 90%;
   }
   .crypto-coins-table-header {
     padding: 0 2vw;

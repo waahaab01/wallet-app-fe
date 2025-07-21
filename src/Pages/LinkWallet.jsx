@@ -7,7 +7,7 @@ import profilebg from "../assets/Image wrap.png"
 const LinkWallet = () => {
   return (
     <div className="settings-page-wrapper">
-      <SettingsSidebar />
+      {/* <SettingsSidebar /> */}
       <main className="settings-main-content">
       <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />
       {/* Profile Header */}
