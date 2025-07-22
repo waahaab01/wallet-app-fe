@@ -5,6 +5,7 @@ import BuySellModal from "./BuySellModal/BuySellModal";
 import BuyCoinsModal from "./BuySellModal/BuyCoinsModal";
 import SellCoinsModal from "./BuySellModal/SellCoinsModal";
 import SwapCoinsModal from "./SwapCoinsModal";
+import ReceiveCoinModal from '../Walletdashboard/ReceiveCoinModal';
 import plusIcon from '../../assets/logo assets/plus-circle.png';
 import sendIcon from '../../assets/logo assets/Icon (1).png';
 import buySellIcon from '../../assets/logo assets/Icon (2).png';
@@ -54,13 +55,22 @@ const Buttons = () => {
   const [showBuyCoinsModal, setShowBuyCoinsModal] = useState(false);
   const [showSellCoinsModal, setShowSellCoinsModal] = useState(false);
   const [showSwapCoinsModal, setShowSwapCoinsModal] = useState(false);
+    const [showReceiveModal, setShowReceiveModal] = useState(false);
+    const [token, setToken] = useState(null);
+  
   const [buySellStep, setBuySellStep] = useState(null); // 'buy' or 'sell'
   const handleButtonClick = (label) => {
     if (label === 'SEND') setShowSendModal(true);
     else if (label === 'BUY / SELL') setShowBuySellModal(true);
     else if (label === 'SWAP') setShowSwapCoinsModal(true);
+        else if (label === 'RECEIVE') setShowReceiveModal(true);
+
     // You can add logic for TOP UP and RECEIVE if you have modals for them
   };
+  React.useEffect(() => {
+      const storedToken = localStorage.getItem('authToken');
+      setToken(storedToken);
+    }, []);
   return (
     <>
       <div className="action-bar">
@@ -103,6 +113,8 @@ const Buttons = () => {
       <BuyCoinsModal open={showBuyCoinsModal} onClose={() => setShowBuyCoinsModal(false)} />
       <SellCoinsModal open={showSellCoinsModal} onClose={() => setShowSellCoinsModal(false)} />
       <SwapCoinsModal open={showSwapCoinsModal} onClose={() => setShowSwapCoinsModal(false)} />
+      <ReceiveCoinModal open={showReceiveModal} onClose={() => setShowReceiveModal(false)} token={token} />
+
     </>
   );
 };

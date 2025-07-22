@@ -34,19 +34,19 @@ const Mywallet = () => {
         style={{
           position: 'absolute',
           top: 16,
-          right: 16,
-          background: '#fff',
-          border: '2px solid #222',
-          borderRadius: '50%',
+          left: 166,
+          // background: '#fff',
+          border: '1px solid black',
+          // borderRadius: '50%',
           width: 36,
           height: 36,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 20,
+          fontSize: 25,
           cursor: 'pointer',
           zIndex: 2,
-          boxShadow: '2px 2px 0 #222',
+          boxShadow: '4px 4px 0 black',
         }}
         title="Refresh"
         onClick={() => window.location.reload()}

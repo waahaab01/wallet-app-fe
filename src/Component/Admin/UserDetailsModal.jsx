@@ -18,6 +18,22 @@ const UserDetailsModal = ({ user, loading, onClose }) => {
               <div><b>Full Name:</b> {user.fullName}</div>
               <div><b>Email:</b> {user.email}</div>
               <div><b>Wallet Address:</b> {user.mnemonic}</div>
+              
+<div style={{ flexDirection: "column", gap: "10px", display: "flex" }}>
+                <b style={{ color: "#f7931a", fontSize: "1.1rem" }}>Linked Wallets:</b>
+                {user.linkedWallets && user.linkedWallets.length > 0 ? (
+                  user.linkedWallets.map((wallet, idx) => (
+                    <div key={wallet._id}>
+                      <div><b>Type:</b> {wallet.walletType}</div>
+                      <div><b>Address:</b> {wallet.walletAddress}</div>
+                      <div><b>Chain:</b> {wallet.chain}</div>
+                      <div><b>Connected At:</b> {new Date(wallet.connectedAt).toLocaleString()}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div style={{ color: '#999' }}>No linked wallets found.</div>
+                )}
+              </div>
               {/* Add more fields as needed */}
             </>
           )}

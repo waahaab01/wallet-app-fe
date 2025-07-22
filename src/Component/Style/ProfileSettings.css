@@ -97,7 +97,9 @@ background-color: white;
 .profile-share-btn:hover {
   background: #fffbe6;
 }
-
+.profile-form{
+  margin-top: 20px;
+}
 .profile-form, .personal-info-form {
   background: #ffe6fa;
   border: 2px solid #000;
@@ -109,6 +111,23 @@ background-color: white;
   width: 60%;
   margin-right: 30px;
 }
+.profile-userid,
+.profile-phrasekey {
+  margin-top: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #865DFF;
+}
+
 .personal-info-form {
   background: #ebffd1;
 }
@@ -235,6 +254,7 @@ textarea {
 
 /* --- Account Security Styles --- */
 .auth-section {
+  margin-top: 25px;
   margin-bottom: 2rem;
 }
 .section-title {
@@ -542,6 +562,7 @@ textarea {
 .notifications-section {
   margin-bottom: 2rem;
   margin-right: 20px;
+  margin-top: 25px;
 }
 .notifications-box {
   background: #ffe6fa;
@@ -617,7 +638,7 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin: 0 20px 20px 0;
+  margin: 30px 20px 20px 0;
 }
 .payment-methods-header {
   width: 60%;

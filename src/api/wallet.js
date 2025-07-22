@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://localhost:5001/api';
- const BASE_URL = 'https://wallet-main-be-production.up.railway.app/api';
+const BASE_URL = 'https://wallet-be-production-b87d.up.railway.app/api';
 
 export async function sendEthFromMainWallet({ toAddress, amountEth, token }) {
   console.log('API CALL: sendEthFromMainWallet', { toAddress, amountEth, token });

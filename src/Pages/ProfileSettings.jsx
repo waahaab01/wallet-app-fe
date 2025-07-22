@@ -1,24 +1,84 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SettingsSidebar from "../Component/SettingsSidebar";
 import avatarImg from "../assets/Portrait.png";
-import profilebg from "../assets/Image wrap.png"
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FiEye, FiEyeOff, FiCopy } from "react-icons/fi";
+
+import profilebg from "../assets/Image wrap.png";
 
 const ProfileSettings = () => {
+  const [walletData, setWalletData] = useState({
+    walletAddress: "",
+    mnemonic: "",
+  });
+  const [showDetails, setShowDetails] = useState(false);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("userWallet"));
+    if (storedData) {
+      setWalletData({
+        walletAddress: storedData.address || "",
+        mnemonic: storedData.mnemonic || "",
+      });
+    }
+  }, []);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard!");
+  };
+
   return (
     <div className="settings-page-wrapper">
       {/* <SettingsSidebar /> */}
       <main className="settings-main-content">
         {/* Profile Header */}
-        <img src={profilebg} style={{ marginBottom: "15%",width:"100%" }} />
+        <img src={profilebg} style={{ marginBottom: "15%", width: "100%" }} />
         <section className="profile-header">
-          <img src={avatarImg} alt="avatar" className="profile-avatar" />
-          <div className="profile-header-info">
-            <h2 className="profile-username">MRFUNKI</h2>
-            <div className="profile-userid">userid#294298a12</div>
-            <div className="profile-phrasekey">phrasekey: HERE PHRASE KEY WILL DISPLAY <span role="img" aria-label="hide">🙈</span></div>
-          </div>
-          <button className="profile-share-btn">🔗 SHARE</button>
-        </section>
+      <img src={avatarImg} alt="avatar" className="profile-avatar" />
+      <div className="profile-header-info">
+        <h2 className="profile-username">MRFUNKI</h2>
+
+        <div className="profile-userid">
+          Wallet Address:&nbsp;
+          {showDetails ? walletData.walletAddress : "************"}
+          <span
+            onClick={() => setShowDetails(!showDetails)}
+            className="ml-2 cursor-pointer"
+          >
+            {showDetails ? <FiEyeOff /> : <FiEye />}
+          </span>
+          {showDetails && (
+            <span
+              onClick={() => copyToClipboard(walletData.walletAddress)}
+              className="ml-2 cursor-pointer"
+            >
+              <FiCopy />
+            </span>
+          )}
+        </div>
+
+        <div className="profile-phrasekey">
+          Phrase Key:&nbsp;
+          {showDetails ? walletData.mnemonic : "************"}
+          <span
+            onClick={() => setShowDetails(!showDetails)}
+            className="ml-2 cursor-pointer"
+          >
+            {showDetails ? <FiEyeOff /> : <FiEye />}
+          </span>
+          {showDetails && (
+            <span
+              onClick={() => copyToClipboard(walletData.mnemonic)}
+              className="ml-2 cursor-pointer"
+            >
+              <FiCopy />
+            </span>
+          )}
+        </div>
+      </div>
+      <button className="profile-share-btn">🔗 SHARE</button>
+    </section>
 
         {/* Profile Form */}
         <form className="profile-form">
@@ -49,8 +109,12 @@ const ProfileSettings = () => {
             </select>
           </div>
           <div className="form-actions">
-            <button type="button" className="cancel-btn">CANCEL</button>
-            <button type="submit" className="save-btn">SAVE</button>
+            <button type="button" className="cancel-btn">
+              CANCEL
+            </button>
+            <button type="submit" className="save-btn">
+              SAVE
+            </button>
           </div>
         </form>
 
@@ -94,14 +158,19 @@ const ProfileSettings = () => {
             <div className="avatar-upload-box">
               <div className="upload-icon">⬆️</div>
               <div className="upload-text">
-                Click to upload <span>or drag and drop</span><br />
+                Click to upload <span>or drag and drop</span>
+                <br />
                 <span className="upload-hint">PNG or JPG (max. 800x400px)</span>
               </div>
             </div>
           </div>
           <div className="form-actions">
-            <button type="button" className="cancel-btn">CANCEL</button>
-            <button type="submit" className="save-btn">SAVE</button>
+            <button type="button" className="cancel-btn">
+              CANCEL
+            </button>
+            <button type="submit" className="save-btn">
+              SAVE
+            </button>
           </div>
         </form>
       </main>
@@ -109,4 +178,4 @@ const ProfileSettings = () => {
   );
 };
 
-export default ProfileSettings; 
+export default ProfileSettings;

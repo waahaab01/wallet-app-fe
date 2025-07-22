@@ -41,6 +41,8 @@ const Authentication = () => {
       }
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("userWallet", JSON.stringify(data.wallet));
+      console.log("Login successful:", data);
       toast.success("Login verified! Redirecting...", { position: 'top-center', theme: 'colored' });
       setTimeout(() => {
         if (data.user && data.user.role === "admin") {
