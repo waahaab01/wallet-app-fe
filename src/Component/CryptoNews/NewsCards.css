@@ -18,7 +18,12 @@
   max-width: 1100px;
   margin: 0 auto 32px auto;
 }
+.news-card:hover {
+  transform: scale(1.02);
+}
 .news-card {
+    transition: transform 0.3s ease;
+
   background: #fff;
   border-radius: 10px;
   box-shadow: 4px 4px 0 black;
@@ -64,7 +69,11 @@
   display: flex;
   gap: 8px;
 }
+.news-card-tag :hover{
+    transform: scale(1.05);
+}
 .news-card-tag {
+    transition: transform 0.3s ease;
   background: #e6d6ff;
   color: #7c3aed;
   font-size: 0.82rem;

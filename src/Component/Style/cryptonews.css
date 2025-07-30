@@ -27,6 +27,7 @@
 }
 
 .news-cardFirst {
+    transition: transform 0.3s ease;
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
@@ -34,7 +35,9 @@
   box-shadow: 2px 2px 0 #000;
   overflow: hidden;
 }
-
+.news-cardFirst:hover {
+  transform: scale(1.02);
+}
 .news-imgFirst {
   width: 100%;
   height: 180px;
@@ -44,12 +47,16 @@
 .news-contentFirst {
   padding: 15px;
 }
-
+.tag:hover{
+  background-color: ;
+}
 .news-dateFirst {
   color: orangered;
   font-size: 14px;
 }
-
+.bitcoin:hover{
+  background-color: #f56eb3;
+}
 .news-titleFirst {
   font-size:18px;
   font-weight: bold;
@@ -91,8 +98,11 @@
   background-color: #f56eb3;
   padding: 10px;
   border-radius: 44px;
+  cursor: pointer;
 }
-
+.nitcoin:hover {
+  background-color: #ee8fc0;
+}
 .blockchain {
   background-color: #00c39a;
   padding: 10px;

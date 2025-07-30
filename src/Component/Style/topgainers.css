@@ -8,7 +8,9 @@
   box-shadow: 4px 4px 0 black;
   font-family: Arial, sans-serif;
 }
-
+.gainer-cardF:hover{
+  transform: scale(1.02);
+}
 .gainer-titleF{
   font-size: 24px;
   font-weight: bold;
@@ -17,6 +19,8 @@
 
 .gainer-cardF{
   display: flex;
+    transition: transform 0.3s ease;
+
   justify-content: space-between;
   align-items: center;
   padding: 14px 18px;

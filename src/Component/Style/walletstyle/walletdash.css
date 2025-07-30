@@ -48,7 +48,12 @@
     justify-content: space-between;
     align-items: center;
 }
+.wal-btn:hover{
+    transform: scale(1.05);
+}
 .wal-btn{
+      transition: transform 0.3s ease;
+
     width: 140px;
     height: 50px;
     border-radius: 10px;

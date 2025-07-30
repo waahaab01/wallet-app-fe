@@ -65,13 +65,14 @@ const Row = () => {
     setToken(storedToken);
   }, []);
 
-  const handleButtonClick = (label) => {
-    if (label === 'SEND') setShowSendModal(true);
-    else if (label === 'BUY / SELL') setShowBuySellModal(true);
-    else if (label === 'SWAP') setShowSwapCoinsModal(true);
-    else if (label === 'RECEIVE') setShowReceiveModal(true);
-    // You can add logic for TOP UP if you have modal for it
-  };
+ const handleButtonClick = (label) => {
+  if (label === 'SEND') setShowSendModal(true);
+  else if (label === 'BUY/SELL') setShowBuySellModal(true); // ✔️ updated to match actual label
+  else if (label === 'SWAP') setShowSwapCoinsModal(true);
+  else if (label === 'RECEIVE') setShowReceiveModal(true);
+  // Add modal trigger for TOP UP if needed
+};
+
 
   return (
     <>

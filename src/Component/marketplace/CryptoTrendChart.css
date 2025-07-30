@@ -97,6 +97,8 @@
   display: flex;
   align-items: center;
   margin-left: 8px;
+      transition: transform 0.3s ease;
+
 }
 .crypto-trend-date-input {
   opacity: 0;
@@ -105,6 +107,11 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+    transition: transform 0.3s ease;
+
+}
+.crypto-trend-date-picker:hover {
+  transform: scale(1.02);
 }
 .date-picker-btn {
   display: flex;

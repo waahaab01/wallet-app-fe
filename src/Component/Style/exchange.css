@@ -109,4 +109,9 @@
   cursor: pointer;
   font-family: 'Bangers', cursive, sans-serif;
   letter-spacing: 1px;
+    transition: transform 0.3s ease;
+
+}
+.swap-button:hover {
+  transform: scale(1.02);
 }

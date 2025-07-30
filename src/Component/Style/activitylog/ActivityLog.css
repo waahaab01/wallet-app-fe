@@ -30,7 +30,10 @@
     flex: 1;
     min-width: 250px;
   }
-  
+  .search-bar input:hover{
+  transform: scale(1.05);
+
+  }
   .search-bar input {
     padding: 0.5rem;
     border: 1px solid black;
@@ -50,9 +53,19 @@
   
   .filter-icon {
     /* margin-left: -0.5rem; */
+      transition: transform 0.3s ease;
+
   }
-  
+  .filter-icon:hover {
+    transform: scale(1.05);
+  } 
+  .date-btn:hover{
+      transform: scale(1.02);
+
+  }
   .date-btn {
+      transition: transform 0.3s ease;
+
     background-color: #fff;
     border: 1px solid #000;
     border-radius: 6px;
@@ -99,9 +112,13 @@
     background: linear-gradient(to top, rgba(190,255,108,0.8) 60%, rgba(190,255,108,0) 100%);
     filter: blur(2px);
   }
-  
+  .transaction-card:hover{
+      transform: scale(1.02);
+  }
   .transaction-card {
     display: flex;
+      transition: transform 0.3s ease;
+
     align-items: center;
     justify-content: space-between;
     padding: 1rem;

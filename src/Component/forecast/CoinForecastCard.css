@@ -9,6 +9,11 @@
   font-family: 'Bangers', cursive;
   position: relative;
   overflow: hidden;
+    transition: transform 0.3s ease;
+
+}
+.coin-forecast-card:hover {
+  transform: scale(1.02);
 }
 .forecast-card-top {
   display: flex;

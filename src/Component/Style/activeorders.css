@@ -14,9 +14,13 @@ h2 {
   font-size: 24px;
   margin-bottom: 20px;
 }
-
+.order-card:hover {
+  transform: scale(1.02);
+}
 .order-card {
   height: 110px;
+    transition: transform 0.3s ease;
+
   background-color: #fff;
   border-radius: 10px;
   margin-bottom: 16px;

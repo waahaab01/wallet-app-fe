@@ -14,9 +14,13 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
-
+.coin-cardFirst:hover{
+  transform: scale(1.02);
+}
 .coin-cardFirst {
   display: flex;
+    transition: transform 0.3s ease;
+
   justify-content: space-between;
   align-items: center;
   padding: 14px 18px;

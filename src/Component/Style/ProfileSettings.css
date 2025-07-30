@@ -160,9 +160,12 @@ input[type="text"], input[type="email"], textarea, select {
   font-size: 1rem;
   background: #fff;
   margin-bottom: 0.2rem;
-  box-shadow: 2px 2px 0 #000;
+  /* box-shadow: 2px 2px 0 #000; */
   resize: none;
+    transition: transform 0.3s ease;
+
 }
+
 textarea {
   min-height: 70px;
   max-height: 200px;

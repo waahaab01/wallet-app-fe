@@ -59,14 +59,13 @@ const Buttons = () => {
     const [token, setToken] = useState(null);
   
   const [buySellStep, setBuySellStep] = useState(null); // 'buy' or 'sell'
-  const handleButtonClick = (label) => {
-    if (label === 'SEND') setShowSendModal(true);
-    else if (label === 'BUY / SELL') setShowBuySellModal(true);
-    else if (label === 'SWAP') setShowSwapCoinsModal(true);
-        else if (label === 'RECEIVE') setShowReceiveModal(true);
+ const handleButtonClick = (label) => {
+  if (label === 'SEND') setShowSendModal(true);
+  else if (label === 'BUY/SELL') setShowBuySellModal(true); // ✅ fixed
+  else if (label === 'SWAP') setShowSwapCoinsModal(true);
+  else if (label === 'RECEIVE') setShowReceiveModal(true);
+};
 
-    // You can add logic for TOP UP and RECEIVE if you have modals for them
-  };
   React.useEffect(() => {
       const storedToken = localStorage.getItem('authToken');
       setToken(storedToken);

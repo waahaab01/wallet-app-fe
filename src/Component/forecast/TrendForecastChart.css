@@ -81,6 +81,7 @@
   background: #fef3c7;
 }
 .trend-date-picker {
+    transition: transform 0.3s ease;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -91,6 +92,9 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: 2px 2px 0 black;
+}
+.trend-date-picker:hover {
+  transform: scale(1.02);
 }
 .trend-forecast-chart-area {
   width: 100%;

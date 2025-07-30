@@ -47,8 +47,12 @@
   box-shadow: 4px 4px 0px black;
   font-size: 1rem;
   gap: 10px;
-}
+    transition: transform 0.3s ease;
 
+}
+.trade-row:hover {
+  transform: scale(1.02);
+}
 .trade-bg-swap {
   background: #fbeee7;
 }
