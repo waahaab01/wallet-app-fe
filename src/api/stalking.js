@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5001/api'; // Update if needed
+const BASE_URL = 'http://31.97.228.198/api'; // Update if needed
 
 export async function stakeTokens({ amount, token }) {
   console.log('Staking request started:', { amount, token });

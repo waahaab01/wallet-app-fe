@@ -1,7 +1,7 @@
 import React from "react";
 import { FiEye, FiEyeOff, FiCopy } from "react-icons/fi";
 
-const BASE_URL = "http://localhost:5001"; // 🔁 Replace with your actual backend URL
+const BASE_URL = "http://31.97.228.198"; // 🔁 Replace with your actual backend URL
 
 const ProfileHeader = ({
   userData,             // 👈 user data passed from parent

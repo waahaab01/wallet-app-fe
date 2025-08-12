@@ -47,7 +47,7 @@ const PersonalInfoForm = ({
     console.log("Cancel Clicked");
     setShowCancelModal(true);
   };
-const BASE_URL = "http://localhost:5001"; // 🌐 Change this to your backend base URL
+const BASE_URL = "http://31.97.228.198"; // 🌐 Change this to your backend base URL
 
   return (
     <form className="personal-info-form" onSubmit={onFormSubmit}>
