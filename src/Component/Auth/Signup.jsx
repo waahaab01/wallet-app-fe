@@ -3,8 +3,8 @@ import "../Style/Signup.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/Log.png";
 import { signupUser } from '../../api/auth';
-import { toast, ToastContainer } from './toaster';
 import { FaEye, FaEyeSlash } from './eyeicons';
+import PopupNotification from "../PopUp/PopUp"; // <-- Import your popup
 
 function getPasswordStrength(password) {
   let score = 0;
@@ -26,6 +26,9 @@ const Signup = () => {
   const [rePassword, setRePassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+
+  const [popupData, setPopupData] = useState(null); // For popup control
+
   const navigate = useNavigate();
 
   const passwordStrength = getPasswordStrength(password);
@@ -37,30 +40,53 @@ const Signup = () => {
     "Very Strong"
   ];
 
- const handleSubmit = async (e) => {
-  if (e) e.preventDefault();
-  setLoading(true);
-  if (password !== rePassword) {
-    toast.error("Passwords do not match", { position: 'top-center', theme: 'colored' });
-    setLoading(false);
-    return;
-  }
-  const fullName = `${firstName} ${lastName}`.trim();
-  try {
-    const data = await signupUser({ fullName, email, password });
-    localStorage.setItem("authToken", data.token);
-    toast.success('Signup successful! Wallet created. Redirecting...', { position: 'top-center', theme: 'colored' });
-    setTimeout(() => navigate("/login"), 2000);
-  } catch (err) {
-    toast.error(err.message, { position: 'top-center', theme: 'colored' });
-  } finally {
-    setLoading(false);
-  }
-};
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    setLoading(true);
+
+    if (password !== rePassword) {
+      setPopupData({
+        type: "error",
+        title: "Passwords do not match",
+        message: "Please make sure both password fields are identical.",
+        buttonText: "OK",
+        onButtonClick: () => setPopupData(null),
+      });
+      setLoading(false);
+      return;
+    }
+
+    const fullName = `${firstName} ${lastName}`.trim();
+
+    try {
+      const data = await signupUser({ fullName, email, password });
+      localStorage.setItem("authToken", data.token);
+
+      setPopupData({
+        type: "success",
+        title: "Signup Successful!",
+        message: "Wallet created successfully. Redirecting to login...",
+        buttonText: "Go to Login",
+        onButtonClick: () => {
+          setPopupData(null);
+          navigate("/login");
+        }
+      });
+    } catch (err) {
+      setPopupData({
+        type: "error",
+        title: "Signup Failed",
+        message: err.message || "Something went wrong. Please try again.",
+        buttonText: "OK",
+        onButtonClick: () => setPopupData(null)
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="signup-container">
-      <ToastContainer />
       <div className="navbarsignup">
         <img src={logo} alt="Logo" className="logo-img" />
       </div>
@@ -71,9 +97,8 @@ const Signup = () => {
             <p className="subtitle">
               Sign up to manage your wallets, track coins, and vibe.
             </p>
-          </div>g
+          </div>
           <form className="form1" onSubmit={handleSubmit}>
-            {/* <div className="form-fields"> */}
             <label className="label">
               First Name*
               <input type="text" placeholder="Enter your first name" value={firstName} onChange={e => setFirstName(e.target.value)} required />
@@ -94,7 +119,6 @@ const Signup = () => {
                   {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
                 </button>
               </div>
-              {/* Password strength bar below input */}
               <div className="strength-bar strength-bar-single">
                 <div className="bar" style={{width: `${passwordStrength*25}%`, background: passwordStrength <= 1 ? '#e74c3c' : passwordStrength === 2 ? '#f1c40f' : passwordStrength === 3 ? '#3498db' : '#2ecc71'}} />
               </div>
@@ -112,31 +136,30 @@ const Signup = () => {
                 <span style={{color:'red',fontSize:'12px'}}>Passwords do not match</span>
               )}
             </label>
-            {/* </div> */}
             <label className="terms1">
-              <input type="checkbox" required /> I agree to the{" "}
+              <input type="checkbox" required  /> I agree to the{" "}
               <span> Terms of Service</span> and <span> Privacy Policy</span>.
             </label>
             <button type="submit" className="signup-btn" disabled={loading}>
-  {loading ? (
-    <span>
-      <span className="loader" style={{
-        display: 'inline-block',
-        width: 18,
-        height: 18,
-        border: '2px solid #fff',
-        borderTop: '2px solid #00bfae',
-        borderRadius: '50%',
-        animation: 'spin 1s linear infinite',
-        marginRight: 8,
-        verticalAlign: 'middle'
-      }} />
-      Please wait...
-    </span>
-  ) : (
-    "SIGN UP"
-  )}
-</button>
+              {loading ? (
+                <span>
+                  <span className="loader" style={{
+                    display: 'inline-block',
+                    width: 18,
+                    height: 18,
+                    border: '2px solid #fff',
+                    borderTop: '2px solid #00bfae',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite',
+                    marginRight: 8,
+                    verticalAlign: 'middle'
+                  }} />
+                  Please wait...
+                </span>
+              ) : (
+                "SIGN UP"
+              )}
+            </button>
 
             <button type="button" className="google-btn" onClick={()=>handleSubmit()}>
               SIGN UP WITH GOOGLE
@@ -147,6 +170,17 @@ const Signup = () => {
           </form>
         </div>
       </div>
+
+      {popupData && (
+        <PopupNotification
+          type={popupData.type}
+          title={popupData.title}
+          message={popupData.message}
+          buttonText={popupData.buttonText}
+          onClose={() => setPopupData(null)}
+          onButtonClick={popupData.onButtonClick}
+        />
+      )}
     </div>
   );
 };

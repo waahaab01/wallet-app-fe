@@ -279,18 +279,23 @@ const ActivityLog = () => {
 
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
+
     // You can filter transactions here based on the date if needed
   };
 
   const openDatePicker = () => {
     dateInputRef.current.click();
+    console.log("Date picker opened");
   };
 
   return (
     <div className="history-wrapper">
       <div className="history-header">
         <div className="search-bar">
-          <div className="search-input-wrapper" style={{ position: "relative" }}>
+          <div
+            className="search-input-wrapper"
+            style={{ position: "relative" }}
+          >
             <input type="text" placeholder="Search" />
             <img
               src={searchIcon}
@@ -336,18 +341,50 @@ const ActivityLog = () => {
         </div>
 
         {/* Date Picker Button */}
-        <button className="date-btn" onClick={openDatePicker}>
-          <MdDateRange className="icon" />
-          {selectedDate ? selectedDate : "Select Date"}
-        </button>
+        <div style={{ position: "relative", display: "inline-block" }}>
+          {/* Label that looks like a button */}
+          <div
+            onClick={() =>
+              dateInputRef.current && dateInputRef.current.showPicker()
+            }
+            className="date-btn"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "10px 14px",
+              // backgroundColor: "#865DFF",
+              color: "black",
+              borderRadius: "8px",
+              boxShadow: "4px 4px 0 black",
+              cursor: "pointer",
+            }}
+          >
+            <MdDateRange className="icon" />
+            {selectedDate
+              ? new Date(selectedDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "Select Date"}
+          </div>
 
-        {/* Hidden Date Input */}
-        <input
-          ref={dateInputRef}
-          type="date"
-          // style={{ display: "none" }}
-          onChange={handleDateChange}
-        />
+          {/* Hidden date input */}
+          <input
+            type="date"
+            ref={dateInputRef}
+            value={selectedDate}
+            onChange={handleDateChange}
+            style={{
+              position: "absolute",
+              opacity: 0,
+              pointerEvents: "none",
+              width: 0,
+              height: 0,
+            }}
+          />
+        </div>
       </div>
 
       <div style={{ position: "relative" }}>

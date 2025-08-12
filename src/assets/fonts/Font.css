@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'CromeStroms';
+  src: url('./crome-stroms.woff2') format('woff2'),
+       url('./crome-stroms.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'CromeStroms', sans-serif !important;
+  letter-spacing: 3px !important;   
+}

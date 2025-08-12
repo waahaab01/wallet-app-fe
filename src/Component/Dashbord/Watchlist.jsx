@@ -1,12 +1,31 @@
-import React from 'react';
+import React,{useState} from 'react';
 import '../Style/watchlist.css';
 import BitcoinIcon from '../../assets/bitcoin1.png';
 import PirlIcon from '../../assets/iconcrypto.png';
 import MonaIcon from '../../assets/iconcrypto1.png';
 import ZcashIcon from '../../assets/iconcrypto2.png';
 import BinanceIcon from '../../assets/ethereum1.png';
+import PopupNotification from "../PopUp/PopUp"; // aapka popup component ka path
 
 function Watchlist() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Jab trade button click ho
+  const handleTradeClick = () => {
+    setShowPopup(true);  // popup dikhao
+  };
+
+  // Popup close karne ka function
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  // Popup ke button click handler
+  const handlePopupButtonClick = () => {
+    // Yahan aap koi extra action kar sakte hain
+    alert("Popup button clicked!");
+    setShowPopup(false);
+  };
   const coins = [
     {
       id: '01',
@@ -85,12 +104,22 @@ function Watchlist() {
                 <span>{coin.change}</span>
               </td>
               <td>
-                <button className="trade-btn">Trade</button>
+      <button onClick={handleTradeClick} className="trade-btn">Trade</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {showPopup && (
+        <PopupNotification
+          type="error"
+          title="Trade Failed!"
+          message="You cannot execute this trade at the moment."
+          buttonText="OK"
+          onClose={handleClosePopup}
+          onButtonClick={handlePopupButtonClick}
+        />
+      )}
     </div>
   );
 }

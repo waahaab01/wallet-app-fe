@@ -3,12 +3,23 @@ import "../Style/Authentication.css";
 import object3 from "../../assets/Vector2.png";
 import logo from "../../assets/Log.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import { toast, ToastContainer } from './toaster';
 import { verifyLoginOTP, verifyLoginMnemonicOTP } from '../../api/auth';
+import PopupNotification from "../PopUp/PopUp"; // <-- popup ka import
 
 const Authentication = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [loading, setLoading] = useState(false);
+
+  // Popup state
+  const [popup, setPopup] = useState({
+    show: false,
+    type: "success",
+    title: "",
+    message: "",
+    buttonText: "OK",
+    onButtonClick: () => {}
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
@@ -27,9 +38,17 @@ const Authentication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (otp.some(d => d === "")) {
-      toast.error("Please enter all 4 digits", { position: 'top-center', theme: 'colored' });
+      setPopup({
+        show: true,
+        type: "error",
+        title: "Missing Digits",
+        message: "Please enter all 4 digits.",
+        buttonText: "Try Again",
+        onButtonClick: () => setPopup(prev => ({ ...prev, show: false }))
+      });
       return;
     }
+
     setLoading(true);
     try {
       const code = otp.join("");
@@ -39,20 +58,35 @@ const Authentication = () => {
       } else {
         data = await verifyLoginOTP({ email, otp: code });
       }
+
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("userWallet", JSON.stringify(data.wallet));
-      console.log("Login successful:", data);
-      toast.success("Login verified! Redirecting...", { position: 'top-center', theme: 'colored' });
-      setTimeout(() => {
-        if (data.user && data.user.role === "admin") {
-          navigate('/admin');
-        } else {
-          navigate('/');
+
+      setPopup({
+        show: true,
+        type: "success",
+        title: "Login Verified!",
+        message: "Redirecting you to your dashboard...",
+        buttonText: "Continue",
+        onButtonClick: () => {
+          if (data.user && data.user.role === "admin") {
+            navigate('/admin');
+          } else {
+            navigate('/');
+          }
         }
-      }, 1200);
+      });
+
     } catch (err) {
-      toast.error(err.message, { position: 'top-center', theme: 'colored' });
+      setPopup({
+        show: true,
+        type: "error",
+        title: "Login Failed",
+        message: err.message || "Something went wrong. Please try again.",
+        buttonText: "Retry",
+        onButtonClick: () => setPopup(prev => ({ ...prev, show: false }))
+      });
     } finally {
       setLoading(false);
     }
@@ -60,7 +94,17 @@ const Authentication = () => {
 
   return (
     <>
-      <ToastContainer />
+      {popup.show && (
+        <PopupNotification
+          type={popup.type}
+          title={popup.title}
+          message={popup.message}
+          buttonText={popup.buttonText}
+          onClose={() => setPopup(prev => ({ ...prev, show: false }))}
+          onButtonClick={popup.onButtonClick}
+        />
+      )}
+
       <div className="auth-container">
         <div className="authimg-block">
           <div className="img-box">
@@ -69,22 +113,22 @@ const Authentication = () => {
           <div className="text-cont">
             <h1 className="textcont-h1">CRYPTO ZEN MODE ACTIVATED</h1>
             <h2 className="textcont-h3">
-              Track coins, monitor NFTs ,swap like a ninja all without leaving
-              you vault. Your assets. your vibe.
+              Track coins, monitor NFTs, swap like a ninja all without leaving your vault.
+              Your assets. Your vibe.
             </h2>
           </div>
         </div>
+
         <div className="form-block">
           <div className="form-container">
-          <div className="logodiv">
-            <img src={logo} alt="" />
-          </div>
+            <div className="logodiv">
+              <img src={logo} alt="" />
+            </div>
             <div className="auth-form1">
               <form className="auth-form" onSubmit={handleSubmit}>
                 <h1 className="form-h5">VERIFY YOUR IDENTITY</h1>
-                <h2 className="form-h2">
-                  Enter the 4- digit code sent to your email
-                </h2>
+                <h2 className="form-h2">Enter the 4-digit code sent to your email</h2>
+
                 <div className="code-div">
                   {otp.map((val, idx) => (
                     <input
@@ -102,9 +146,11 @@ const Authentication = () => {
                     />
                   ))}
                 </div>
+
                 <button type="submit" className="verify" disabled={loading}>
                   {loading ? 'Please wait...' : 'VERIFY'}
                 </button>
+
                 <button type="button" className="back" onClick={() => navigate('/login')}>
                   BACK TO LOGIN
                 </button>

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CryptoPredictionsTable.css';
 import btcIcon from '../../assets/bitcoin1.png';
 import pirlIcon from '../../assets/iconcrypto.png';
 import monaIcon from '../../assets/iconcrypto1.png';
 import zecIcon from '../../assets/iconcrypto2.png';
 import bnbIcon from '../../assets/ethereum1.png';
+import PopupNotification from '../PopUp/PopUp';  // Popup import
 
 const predictions = [
   {
@@ -17,8 +18,7 @@ const predictions = [
     forecastPrice: '$21,144,05',
     forecastChange: '+8,24%',
     isUp: true,
-  },
-  {
+  },{
     id: '02',
     name: 'Pirl',
     symbol: 'PRL',
@@ -62,15 +62,34 @@ const predictions = [
     forecastChange: '-6,13%',
     isUp: false,
   },
+  // ... baaki coins
 ];
 
 const CryptoPredictionsTable = () => {
+  const [popupData, setPopupData] = useState({
+    isOpen: false,
+    type: 'error',
+    title: '',
+    message: '',
+    buttonText: 'OK',
+  });
+
+  const handleTradeClick = () => {
+    setPopupData({
+      isOpen: true,
+      type: 'error',
+      title: 'Feature Not Available',
+      message: 'Trade functionality is currently not implemented.',
+      buttonText: 'OK',
+    });
+  };
+
   return (
     <div className="predictions-table-root">
       <div className="predictions-table-header">
         <span className="predictions-title">Crypto Predictions <span className="info-icon">ⓘ</span></span>
         <button className="download-report-btn">
-          <span className="download-icon">🔄</span> DOWNLOAD REPORT
+          <span className="download-icon" onClick={handleTradeClick}>🔄</span> DOWNLOAD REPORT
         </button>
       </div>
       <div className="predictions-table-scroll">
@@ -94,7 +113,7 @@ const CryptoPredictionsTable = () => {
                 <td>{coin.id}</td>
                 <td className="pred-coin-cell">
                   <div className="pred-coin-info">
-                  <img src={coin.icon} alt={coin.name} className="pred-coin-icon" />
+                    <img src={coin.icon} alt={coin.name} className="pred-coin-icon" />
                     <div className="pred-coin-name">{coin.name}</div>
                     <div className="pred-coin-symbol">{coin.symbol}</div>
                   </div>
@@ -109,14 +128,27 @@ const CryptoPredictionsTable = () => {
                   <span className="pred-change-arrow">{!coin.isUp ? '↘' : '↗'}</span>
                   {coin.forecastChange}
                 </td>
-                <td><button className="pred-trade-btn">Trade</button></td>
+                <td>
+                  <button className="pred-trade-btn" onClick={handleTradeClick}>Trade</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {popupData.isOpen && (
+        <PopupNotification
+          type={popupData.type}
+          title={popupData.title}
+          message={popupData.message}
+          buttonText={popupData.buttonText}
+          onClose={() => setPopupData({ ...popupData, isOpen: false })}
+          onButtonClick={() => setPopupData({ ...popupData, isOpen: false })}
+        />
+      )}
     </div>
   );
 };
 
-export default CryptoPredictionsTable; 
+export default CryptoPredictionsTable;

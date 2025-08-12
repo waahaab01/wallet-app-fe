@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Style/exchange.css";
-import bitcoin from "../../assets/bitcoin1.png"
-import ethereum from "../../assets/ethereum2.png"
+import bitcoin from "../../assets/bitcoin1.png";
+import ethereum from "../../assets/ethereum2.png";
+import PopupNotification from '../PopUp/PopUp';  // Popup import karo
 
 const ExchangeCrypto = () => {
+  const [popupData, setPopupData] = useState({
+    isOpen: false,
+    type: 'error',
+    title: '',
+    message: '',
+    buttonText: 'OK',
+  });
+
+  const handleSwapClick = () => {
+    setPopupData({
+      isOpen: true,
+      type: 'error',
+      title: 'Feature Coming Soon',
+      message: 'Swap Coins feature is not yet implemented.',
+      buttonText: 'OK',
+    });
+  };
+
   return (
     <div className="exchange-box">
       <h2 className="heading">
@@ -36,7 +55,18 @@ const ExchangeCrypto = () => {
         <div className="rate">1 ETH = 17,14 USDT</div>
       </div>
 
-      <button className="swap-button">SWAP COINS</button>
+      <button className="swap-button" onClick={handleSwapClick}>SWAP COINS</button>
+
+      {popupData.isOpen && (
+        <PopupNotification
+          type={popupData.type}
+          title={popupData.title}
+          message={popupData.message}
+          buttonText={popupData.buttonText}
+          onClose={() => setPopupData({ ...popupData, isOpen: false })}
+          onButtonClick={() => setPopupData({ ...popupData, isOpen: false })}
+        />
+      )}
     </div>
   );
 };

@@ -4,14 +4,22 @@ import logo1 from "../../assets/Log.png";
 import object from "../../assets/Vector.png";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/auth";
-import { toast, ToastContainer } from "./toaster";
 import { FaEye, FaEyeSlash } from "./eyeicons";
+import PopupNotification from "../PopUp/PopUp"; // Import popup component
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [popup, setPopup] = useState({
+    show: false,
+    type: "success",
+    title: "",
+    message: "",
+  });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,13 +27,30 @@ const Login = () => {
     setLoading(true);
     try {
       const data = await loginUser({ email, password });
-      toast.success(data.message || "OTP sent to your email", {
-        position: "top-center",
-        theme: "colored",
+      setPopup({
+        show: true,
+        type: "success",
+        title: "Login Successful!",
+        message: data.message || "OTP sent to your email",
       });
-      setTimeout(() => navigate("/authentication", { state: { email } }), 1500);
+
+      // Navigate after 1.5 sec
+      setTimeout(() => {
+        setPopup({ ...popup, show: false });
+        navigate("/authentication", { state: { email } });
+      }, 2000);
     } catch (err) {
-      toast.error(err.message, { position: "top-center", theme: "colored" });
+      setPopup({
+        show: true,
+        type: "error",
+        title: "Login Failed!",
+        message: err.message || "Invalid credentials",
+      });
+
+      // Auto close after 2 sec
+      setTimeout(() => {
+        setPopup({ ...popup, show: false });
+      }, 2000);
     } finally {
       setLoading(false);
     }
@@ -33,7 +58,17 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer />
+      {popup.show && (
+        <PopupNotification
+          type={popup.type}
+          title={popup.title}
+          message={popup.message}
+          buttonText="OK"
+          onClose={() => setPopup({ ...popup, show: false })}
+          onButtonClick={() => setPopup({ ...popup, show: false })}
+        />
+      )}
+
       <div className="main-containerlogin">
         <div className="img-blocklogin">
           <div className="img-boxlogin">
@@ -47,6 +82,7 @@ const Login = () => {
             </h2>
           </div>
         </div>
+
         <div className="form-blocklogin">
           <div className="form-containerlogin">
             <div className="logodivlogin">
@@ -56,8 +92,9 @@ const Login = () => {
               <form className="form" onSubmit={handleSubmit}>
                 <h1 className="form-h1">Welcome Back</h1>
                 <h2 className="form-h2">
-                  welcome back!Please enter your details
+                  welcome back! Please enter your details
                 </h2>
+
                 <label>
                   <h1 className="label-h1">Email</h1>
                   <input
@@ -69,6 +106,7 @@ const Login = () => {
                     required
                   />
                 </label>
+
                 <label>
                   <h1 className="label-h1">Password</h1>
                   <div className="password-field">
@@ -91,14 +129,11 @@ const Login = () => {
                         cursor: "pointer",
                       }}
                     >
-                      {showPassword ? (
-                        <FaEyeSlash size={18} />
-                      ) : (
-                        <FaEye size={18} />
-                      )}
+                      {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
                     </button>
                   </div>
                 </label>
+
                 <label className="terms">
                   <input type="checkbox" /> Remember for me{" "}
                   <span
@@ -108,6 +143,7 @@ const Login = () => {
                     Forget Password
                   </span>
                 </label>
+
                 <button type="submit" className="signup-btn" disabled={loading}>
                   {loading ? (
                     <span>
@@ -117,9 +153,10 @@ const Login = () => {
                           display: "inline-block",
                           width: 18,
                           height: 18,
-                          border: "2px solid #fff",
-                          borderTop: "2px solid #00bfae",
-                          borderRadius: "50%",
+                          border: "1px solid black",
+                          // borderTop: "2px solid #00bfae",
+                          borderRadius: "6px",
+                          boxShadow: "4px 4px 0 black",
                           animation: "spin 1s linear infinite",
                           marginRight: 8,
                           verticalAlign: "middle",
@@ -131,9 +168,11 @@ const Login = () => {
                     "SIGN in"
                   )}
                 </button>
+
                 <button type="button" className="google-btn">
                   SIGN in WITH GOOGLE
                 </button>
+
                 <button
                   type="button"
                   className="topup-btn"
@@ -143,9 +182,10 @@ const Login = () => {
                     color: '#222',
                     fontWeight: 700,
                     borderRadius: 8,
-                    border: '2px solid #222',
+                    border: '1px solid #222',
                     padding: '12px 0',
                     width: '100%',
+                    boxShadow: '4px 4px 0px black',
                     fontSize: '1.1rem',
                     cursor: 'pointer',
                   }}
@@ -153,6 +193,7 @@ const Login = () => {
                 >
                   TOPUP LOGIN
                 </button>
+
                 <p className="signin-link" onClick={() => navigate("/signup")}>
                   Don't have an account?<span>Sign up</span>
                 </p>

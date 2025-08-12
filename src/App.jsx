@@ -30,7 +30,7 @@ import CryptoNews from "./Pages/CryptoNews";
 import NewsDetail from "./Pages/NewsDetail";
 import MarketplacePage from "./Pages/MarketplacePage";
 import ForecastPage from "./Pages/forecast/ForecastPage";
-
+import './assets/fonts/Font.css';
 function App() {
   return (
     <Router>

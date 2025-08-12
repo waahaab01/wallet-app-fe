@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ApexCharts from 'react-apexcharts';
 import './TrendForecastChart.css';
 import btcIcon from '../../assets/bitcoin1.png';
@@ -10,8 +10,24 @@ const timeRanges = [
   { label: '24 hours', value: '24h' },
 ];
 
+const coins = [
+  { name: 'Bitcoin', symbol: 'BTC', icon: btcIcon },
+  { name: 'Ethereum', symbol: 'ETH', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png' },
+  { name: 'Ripple', symbol: 'XRP', icon: 'https://cryptologos.cc/logos/xrp-xrp-logo.png' },
+];
+
 const TrendForecastChart = () => {
   const [selectedRange, setSelectedRange] = useState('12m');
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedCoin, setSelectedCoin] = useState(coins[0]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dateInputRef = useRef(null);
+
+  const openDatePicker = () => {
+    if (dateInputRef.current) {
+      dateInputRef.current.showPicker();
+    }
+  };
 
   const chartOptions = {
     chart: {
@@ -56,17 +72,17 @@ const TrendForecastChart = () => {
       enabled: true,
       shared: false,
       intersect: true,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function () {
         return `
           <div class="apex-tooltip">
             <div class="tooltip-header">
-              <img src="${btcIcon}" alt="btc" class="tooltip-icon" />
+              <img src="${selectedCoin.icon}" alt="${selectedCoin.symbol}" class="tooltip-icon" />
               <div class="tooltip-title">
-                <div class="tooltip-coin">BTC</div>
-                <div class="tooltip-coin-name">Bitcoin</div>
+                <div class="tooltip-coin">${selectedCoin.symbol}</div>
+                <div class="tooltip-coin-name">${selectedCoin.name}</div>
               </div>
             </div>
-            <div class="tooltip-change">+9,6%</div>
+            <div class="tooltip-change">+9.6%</div>
           </div>
         `;
       },
@@ -112,13 +128,63 @@ const TrendForecastChart = () => {
     <div className="trend-forecast-chart-root">
       <div className="trend-forecast-header">
         <div className="trend-forecast-title-section">
-          <span className="trend-forecast-title">Trend Forecast <span className="info-icon">ⓘ</span></span>
-          <div className="trend-forecast-coin-selector">
-            <img src={btcIcon} alt="btc" className="trend-coin-icon" />
-            <span className="trend-coin-label">Bitcoin (BTC)</span>
-            <span className="trend-coin-caret">▼</span>
+          <span className="trend-forecast-title">
+            Trend Forecast <span className="info-icon">ⓘ</span>
+          </span>
+
+          {/* Coin Dropdown */}
+          <div className="trend-forecast-coin-selector" style={{ position: 'relative' }}>
+            <div
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: '6px' }}
+            >
+              <img src={selectedCoin.icon} alt={selectedCoin.symbol} className="trend-coin-icon" />
+              <span className="trend-coin-label">{selectedCoin.name} ({selectedCoin.symbol})</span>
+              <span className="trend-coin-caret">▼</span>
+            </div>
+
+            {dropdownOpen && (
+              <div
+                className="coin-dropdown"
+                style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  backgroundColor: '#fff',
+                  border: '1px solid #ccc',
+                  borderRadius: '6px',
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                  zIndex: 999,
+                  marginTop: '6px',
+                  minWidth: '180px',
+                }}
+              >
+                {coins.map((coin) => (
+                  <div
+                    key={coin.symbol}
+                    onClick={() => {
+                      setSelectedCoin(coin);
+                      setDropdownOpen(false);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      padding: '8px 12px',
+                      cursor: 'pointer',
+                      gap: '6px',
+                      fontWeight: 500,
+                    }}
+                  >
+                    <img src={coin.icon} alt={coin.symbol} style={{ width: 20, height: 20 }} />
+                    <span>{coin.name} ({coin.symbol})</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
+
+        {/* Time + Date Controls */}
         <div className="trend-forecast-controls">
           <div className="trend-range-btns">
             {timeRanges.map(r => (
@@ -131,11 +197,44 @@ const TrendForecastChart = () => {
               </button>
             ))}
           </div>
-          <div className="trend-date-picker">
-            <span className="date-picker-icon">📅</span> Select Date
+
+          {/* Date Picker */}
+          <div className="trend-date-picker" style={{ position: 'relative' }}>
+            <input
+              ref={dateInputRef}
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              style={{
+                opacity: 0,
+                position: 'absolute',
+                pointerEvents: 'none',
+                width: 0,
+                height: 0,
+              }}
+            />
+            <span
+              onClick={openDatePicker}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                cursor: 'pointer',
+                // backgroundColor: '#8b5cf6',
+                color: 'black',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                fontWeight: '500',
+              }}
+            >
+              <span className="date-picker-icon">📅</span>
+              {selectedDate ? new Date(selectedDate).toLocaleDateString('en-GB') : 'Select Date'}
+            </span>
           </div>
         </div>
       </div>
+
+      {/* Chart */}
       <div className="trend-forecast-chart-area">
         <ApexCharts options={chartOptions} series={chartSeries} type="line" height={350} />
       </div>
@@ -143,4 +242,4 @@ const TrendForecastChart = () => {
   );
 };
 
-export default TrendForecastChart; 
+export default TrendForecastChart;

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import './SendCoinModal.css';
-import { sendEthFromMainWallet } from '../../../api/wallet';
+// import { sendEthFromMainWallet } from '../../../api/wallet';
+import PopupNotification from "../../PopUp/PopUp";
 
-// Custom SVG icons for tokens and addresses
 const BtcSvg = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="10" fill="#f7931a" />
-    <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff" fontWeight="bold">
-      ₿
-    </text>
+    <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff" fontWeight="bold">₿</text>
   </svg>
 );
 const EthSvg = () => (
@@ -21,9 +19,7 @@ const EthSvg = () => (
 const UsdtSvg = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="10" fill="#26a17b" />
-    <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff" fontWeight="bold">
-      T
-    </text>
+    <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff" fontWeight="bold">T</text>
   </svg>
 );
 const MetamaskSvg = () => (
@@ -41,9 +37,7 @@ const BlockchainSvg = () => (
 const CryptoSvg = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="10" fill="#8e44ad" />
-    <text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff" fontWeight="bold">
-      CR
-    </text>
+    <text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff" fontWeight="bold">CR</text>
   </svg>
 );
 
@@ -65,7 +59,7 @@ const addressOptions = [
   { label: 'CRYPTOGRAPHY', icon: <CryptoSvg /> },
 ];
 
-const SendCoinModal = ({ open, onClose }) => {
+const SendCoinModal = ({ open, onClose }) => {  
   const [selectedToken, setSelectedToken] = useState(tokenOptions[0]);
   const [showTokenDropdown, setShowTokenDropdown] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(addressOptions[0]);
@@ -73,132 +67,194 @@ const SendCoinModal = ({ open, onClose }) => {
   const [amount, setAmount] = useState('');
   const [recipient, setRecipient] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+
+  const [popupData, setPopupData] = useState({
+    isOpen: false,
+    type: 'error', // 'success' or 'error'
+    title: '',
+    message: '',
+    buttonText: 'OK',
+  });
 
   const handleSend = async () => {
-    setError('');
-    setSuccess('');
+    // Reset previous popup
+    setPopupData({ ...popupData, isOpen: false });
+
+    // Basic validation
+    if (!amount || isNaN(parseFloat(amount.replace(/,/g, ''))) || parseFloat(amount.replace(/,/g, '')) <= 0) {
+      setPopupData({
+        isOpen: true,
+        type: 'error',
+        title: 'Invalid Amount',
+        message: 'Please enter a valid amount to send.',
+        buttonText: 'OK',
+      });
+      return;
+    }
+    if (!recipient) {
+      setPopupData({
+        isOpen: true,
+        type: 'error',
+        title: 'Invalid Recipient',
+        message: 'Please enter the recipient address.',
+        buttonText: 'OK',
+      });
+      return;
+    }
+
     setLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      console.log('Sending:', { toAddress: recipient, amountEth: amount.replace(/,/g, ''), token });
       const result = await sendEthFromMainWallet({
         toAddress: recipient,
         amountEth: amount.replace(/,/g, ''),
         token,
       });
-      setSuccess(result.message || 'Transaction sent!');
-      console.log('Send Success:', result);
+
+      setPopupData({
+        isOpen: true,
+        type: 'success',
+        title: 'Transaction Sent!',
+        message: result.message || 'Your transaction has been sent successfully.',
+        buttonText: 'OK',
+      });
     } catch (err) {
-      setError(err.message);
-      console.error('Send Error:', err);
+      setPopupData({
+        isOpen: true,
+        type: 'error',
+        title: 'Transaction Failed',
+        message: err.message || 'An error occurred while sending transaction.',
+        buttonText: 'OK',
+      });
     } finally {
       setLoading(false);
     }
   };
 
   if (!open) return null;
+
   return (
-    <div className="sendcoin-modal-overlay">
-      <div className="sendcoin-modal">
-        <button className="sendcoin-close" onClick={onClose} aria-label="Close">
-          <CloseIcon />
-        </button>
-        <h2 className="sendcoin-title">SEND COINS</h2>
-        <p className="sendcoin-desc">
-          Select the token, enter the recipient, and review the amount before sending. Simple, fast, and fully in your control.
-        </p>
-        <div className="sendcoin-field-group">
-          <label className="sendcoin-label">Token to Send</label>
-          <div className="sendcoin-input-row sendcoin-input-row--dropdown">
-            <div className="sendcoin-dropdown-wrapper">
-              <span
-                className={`sendcoin-token sendcoin-dropdown-toggle${showTokenDropdown ? ' open' : ''}`}
-                tabIndex={0}
-                onClick={() => setShowTokenDropdown((v) => !v)}
-                onBlur={() => setTimeout(() => setShowTokenDropdown(false), 150)}
-              >
-                {selectedToken.icon} {selectedToken.label}
-                <span className="sendcoin-dropdown-arrow">
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                    <path d="M6 8l4 4 4-4" stroke="#20e2c2" strokeWidth="2.2" strokeLinecap="round" />
-                  </svg>
+    <div>
+      <div className="sendcoin-modal-overlay">
+        <div className="sendcoin-modal">
+          <button className="sendcoin-close" onClick={onClose} aria-label="Close">
+            <CloseIcon />
+          </button>
+          <h2 className="sendcoin-title">SEND COINS</h2>
+          <p className="sendcoin-desc">
+            Select the token, enter the recipient, and review the amount before sending. Simple, fast, and fully in your control.
+          </p>
+          <div className="sendcoin-field-group">
+            <label className="sendcoin-label">Token to Send</label>
+            <div className="sendcoin-input-row sendcoin-input-row--dropdown">
+              <div className="sendcoin-dropdown-wrapper">
+                <span
+                  className={`sendcoin-token sendcoin-dropdown-toggle${showTokenDropdown ? ' open' : ''}`}
+                  tabIndex={0}
+                  onClick={() => setShowTokenDropdown((v) => !v)}
+                  onBlur={() => setTimeout(() => setShowTokenDropdown(false), 150)}
+                >
+                  {selectedToken.icon} {selectedToken.label}
+                  <span className="sendcoin-dropdown-arrow">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                      <path d="M6 8l4 4 4-4" stroke="#20e2c2" strokeWidth="2.2" strokeLinecap="round" />
+                    </svg>
+                  </span>
                 </span>
-              </span>
-              <div
-                className={`sendcoin-dropdown-list${showTokenDropdown ? ' show' : ''}`}
-                style={{ pointerEvents: showTokenDropdown ? 'auto' : 'none' }}
-              >
-                {tokenOptions.map((opt) => (
-                  <div
-                    key={opt.label}
-                    className={`sendcoin-dropdown-item${selectedToken.label === opt.label ? ' selected' : ''}`}
-                    onClick={() => {
-                      setSelectedToken(opt);
-                      setShowTokenDropdown(false);
-                    }}
-                  >
-                    {opt.icon} {opt.label}
-                  </div>
-                ))}
+                <div
+                  className={`sendcoin-dropdown-list${showTokenDropdown ? ' show' : ''}`}
+                  style={{ pointerEvents: showTokenDropdown ? 'auto' : 'none' }}
+                >
+                  {tokenOptions.map((opt) => (
+                    <div
+                      key={opt.label}
+                      className={`sendcoin-dropdown-item${selectedToken.label === opt.label ? ' selected' : ''}`}
+                      onClick={() => {
+                        setSelectedToken(opt);
+                        setShowTokenDropdown(false);
+                      }}
+                    >
+                      {opt.icon} {opt.label}
+                    </div>
+                  ))}
+                </div>
               </div>
+              <input
+                className="sendcoin-input"
+                type="text"
+                value={amount}
+                onChange={e => setAmount(e.target.value)}
+                placeholder="Amount (ETH)"
+              />
             </div>
-            <input className="sendcoin-input" type="text" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Amount (ETH)" />
           </div>
-        </div>
-        <div className="sendcoin-field-group">
-          <label className="sendcoin-label">Recipient Address</label>
-          <div className="sendcoin-input-row sendcoin-input-row--dropdown">
-            <div className="sendcoin-dropdown-wrapper">
-              <span
-                className={`sendcoin-token sendcoin-dropdown-toggle${showAddressDropdown ? ' open' : ''}`}
-                tabIndex={0}
-                onClick={() => setShowAddressDropdown((v) => !v)}
-                onBlur={() => setTimeout(() => setShowAddressDropdown(false), 150)}
-              >
-                {selectedAddress.icon} {selectedAddress.label}
-                <span className="sendcoin-dropdown-arrow">
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                    <path d="M6 8l4 4 4-4" stroke="#20e2c2" strokeWidth="2.2" strokeLinecap="round" />
-                  </svg>
+          <div className="sendcoin-field-group">
+            <label className="sendcoin-label">Recipient Address</label>
+            <div className="sendcoin-input-row sendcoin-input-row--dropdown">
+              <div className="sendcoin-dropdown-wrapper">
+                <span
+                  className={`sendcoin-token sendcoin-dropdown-toggle${showAddressDropdown ? ' open' : ''}`}
+                  tabIndex={0}
+                  onClick={() => setShowAddressDropdown((v) => !v)}
+                  onBlur={() => setTimeout(() => setShowAddressDropdown(false), 150)}
+                >
+                  {selectedAddress.icon} {selectedAddress.label}
+                  <span className="sendcoin-dropdown-arrow">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                      <path d="M6 8l4 4 4-4" stroke="#20e2c2" strokeWidth="2.2" strokeLinecap="round" />
+                    </svg>
+                  </span>
                 </span>
-              </span>
-              <div
-                className={`sendcoin-dropdown-list${showAddressDropdown ? ' show' : ''}`}
-                style={{ pointerEvents: showAddressDropdown ? 'auto' : 'none' }}
-              >
-                {addressOptions.map((opt) => (
-                  <div
-                    key={opt.label}
-                    className={`sendcoin-dropdown-item${selectedAddress.label === opt.label ? ' selected' : ''}`}
-                    onClick={() => {
-                      setSelectedAddress(opt);
-                      setShowAddressDropdown(false);
-                    }}
-                  >
-                    {opt.icon} {opt.label}
-                  </div>
-                ))}
+                <div
+                  className={`sendcoin-dropdown-list${showAddressDropdown ? ' show' : ''}`}
+                  style={{ pointerEvents: showAddressDropdown ? 'auto' : 'none' }}
+                >
+                  {addressOptions.map((opt) => (
+                    <div
+                      key={opt.label}
+                      className={`sendcoin-dropdown-item${selectedAddress.label === opt.label ? ' selected' : ''}`}
+                      onClick={() => {
+                        setSelectedAddress(opt);
+                        setShowAddressDropdown(false);
+                      }}
+                    >
+                      {opt.icon} {opt.label}
+                    </div>
+                  ))}
+                </div>
               </div>
+              <input
+                className="sendcoin-input"
+                type="text"
+                value={recipient}
+                onChange={e => setRecipient(e.target.value)}
+                placeholder="Recipient Address"
+              />
             </div>
-            <input className="sendcoin-input" type="text" value={recipient} onChange={e => setRecipient(e.target.value)} placeholder="Recipient Address" />
           </div>
+          <div className="sendcoin-or">OR</div>
+          <div className="sendcoin-qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=0xABC123...5678" alt="qr" />
+          </div>
+          <div className="sendcoin-info">
+            <span className="sendcoin-info-label">Info</span>
+            <span className="sendcoin-info-detail">• Network Fee Estimate: 0.00021 BTC | $6.00</span>
+          </div>
+          <button className="sendcoin-btn" onClick={handleSend} disabled={loading}>
+            {loading ? 'Sending...' : 'SEND COINS'}
+          </button>
         </div>
-        <div className="sendcoin-or">OR</div>
-        <div className="sendcoin-qr">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=0xABC123...5678" alt="qr" />
-        </div>
-        <div className="sendcoin-info">
-          <span className="sendcoin-info-label">Info</span>
-          <span className="sendcoin-info-detail">• Network Fee Estimate: 0.00021 BTC | $6.00</span>
-        </div>
-        {error && <div className="sendcoin-error">{error}</div>}
-        {success && <div className="sendcoin-success">{success}</div>}
-        <button className="sendcoin-btn" onClick={handleSend} disabled={loading}>
-          {loading ? 'Sending...' : 'SEND COINS'}
-        </button>
-      </div>
+</div>
+      {popupData.isOpen && (
+        <PopupNotification
+          type={popupData.type}
+          title={popupData.title}
+          message={popupData.message}
+          buttonText={popupData.buttonText}
+          onClose={() => setPopupData({ ...popupData, isOpen: false })}
+          onButtonClick={() => setPopupData({ ...popupData, isOpen: false })}
+        />
+      )}
     </div>
   );
 };

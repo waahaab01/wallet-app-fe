@@ -5,6 +5,7 @@ import topup from "../../assets/topup.png";
 import logo1 from "../../assets/Log.png";
 import { loginWithMnemonic } from '../../api/auth';
 import { useNavigate } from "react-router-dom";
+import PopupNotification from "../PopUp/PopUp"; // ✅ import your popup
 
 const TopUpLogin = () => {
   const navigate = useNavigate();
@@ -12,22 +13,38 @@ const TopUpLogin = () => {
   const [phrase, setPhrase] = useState("");
   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+
+  const [popup, setPopup] = useState({
+    visible: false,
+    type: "success",
+    title: "",
+    message: "",
+    buttonText: "OK",
+    onButtonClick: null,
+  });
 
   const handleMnemonicLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
-    setSuccess("");
     try {
       const res = await loginWithMnemonic(phrase);
-      setSuccess(res.message || "OTP sent to your email");
-      setTimeout(() => {
-        navigate("/authentication", { state: { mnemonic: phrase } });
-      }, 1000);
+      setPopup({
+        visible: true,
+        type: "success",
+        title: "Login Successful!",
+        message: res.message || "OTP sent to your email",
+        buttonText: "Continue",
+        onButtonClick: () => navigate("/authentication", { state: { mnemonic: phrase } })
+      });
     } catch (err) {
-      setError(err.message || "Failed to login");
+      setPopup({
+        visible: true,
+        type: "error",
+        title: "Login Failed",
+        message: err.message || "Failed to login",
+        buttonText: "Try Again",
+        onButtonClick: () => setPopup((prev) => ({ ...prev, visible: false }))
+      });
     } finally {
       setLoading(false);
     }
@@ -35,6 +52,17 @@ const TopUpLogin = () => {
 
   return (
     <div className="topup-container">
+      {popup.visible && (
+        <PopupNotification
+          type={popup.type}
+          title={popup.title}
+          message={popup.message}
+          buttonText={popup.buttonText}
+          onClose={() => setPopup((prev) => ({ ...prev, visible: false }))}
+          onButtonClick={popup.onButtonClick}
+        />
+      )}
+
       <div className="topup-img-block">
         <div className="topup-img-box">
           <img src={topup} alt="" />
@@ -56,7 +84,7 @@ const TopUpLogin = () => {
             <form className="topup-form" onSubmit={handleMnemonicLogin}>
               <h1 className="topup-form-h1">Welcome Back</h1>
               <h2 className="topup-form-h2">
-                welcome back!Please enter your Phrase key
+                welcome back! Please enter your Phrase key
               </h2>
               <label className="topup-label-h1">
                 Private Key
@@ -119,8 +147,6 @@ const TopUpLogin = () => {
               <div className="topup-signin-link">
                 Don't have an account? <span>Sign up</span>
               </div>
-              {error && <div style={{color:'#e00751',marginTop:8}}>{error}</div>}
-              {success && <div style={{color:'#00bfae',marginTop:8}}>{success}</div>}
             </form>
           </div>
         </div>

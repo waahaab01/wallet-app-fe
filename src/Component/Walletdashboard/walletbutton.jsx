@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Style/walletstyle/walletbutton.css";
 import SendCoinModal from "./SendCoinModal/SendCoinModal";
 import BuySellModal from "./BuySellModal/BuySellModal";
@@ -6,12 +6,14 @@ import BuyCoinsModal from "./BuySellModal/BuyCoinsModal";
 import SellCoinsModal from "./BuySellModal/SellCoinsModal";
 import SwapCoinsModal from "./SwapCoinsModal";
 import ReceiveCoinModal from '../Walletdashboard/ReceiveCoinModal';
+import PopupNotification from '../PopUp/PopUp';  // <-- Popup import karo
+
 import plusIcon from '../../assets/logo assets/plus-circle.png';
 import sendIcon from '../../assets/logo assets/Icon (1).png';
 import buySellIcon from '../../assets/logo assets/Icon (2).png';
 import receiveIcon from '../../assets/logo assets/Icon (3).png';
 import swapIcon from '../../assets/logo assets/Icon.png';
-import topupBg from '../../assets/logo assets/plus-circle (1).png'; // Example, apni image rakhain
+import topupBg from '../../assets/logo assets/plus-circle (1).png'; 
 import sendBg from '../../assets/logo assets/trend-up-02.png';
 import buySellBg from '../../assets/logo assets/currency-dollar-circle.png';
 import receiveBg from '../../assets/logo assets/trend-down-02.png';
@@ -49,27 +51,48 @@ const buttons = [
     bgImage: swapBg,
   },
 ];
+
 const Buttons = () => {
   const [showSendModal, setShowSendModal] = useState(false);
   const [showBuySellModal, setShowBuySellModal] = useState(false);
   const [showBuyCoinsModal, setShowBuyCoinsModal] = useState(false);
   const [showSellCoinsModal, setShowSellCoinsModal] = useState(false);
   const [showSwapCoinsModal, setShowSwapCoinsModal] = useState(false);
-    const [showReceiveModal, setShowReceiveModal] = useState(false);
-    const [token, setToken] = useState(null);
-  
-  const [buySellStep, setBuySellStep] = useState(null); // 'buy' or 'sell'
- const handleButtonClick = (label) => {
-  if (label === 'SEND') setShowSendModal(true);
-  else if (label === 'BUY/SELL') setShowBuySellModal(true); // ✅ fixed
-  else if (label === 'SWAP') setShowSwapCoinsModal(true);
-  else if (label === 'RECEIVE') setShowReceiveModal(true);
-};
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [token, setToken] = useState(null);
+  const [buySellStep, setBuySellStep] = useState(null);
 
-  React.useEffect(() => {
-      const storedToken = localStorage.getItem('authToken');
-      setToken(storedToken);
-    }, []);
+  // Popup state for error notification
+  const [popupData, setPopupData] = useState({
+    isOpen: false,
+    type: 'error',
+    title: '',
+    message: '',
+    buttonText: 'OK',
+  });
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('authToken');
+    setToken(storedToken);
+  }, []);
+
+  const handleButtonClick = (label) => {
+    if (label === 'SEND') setShowSendModal(true);
+    else if (label === 'BUY/SELL') setShowBuySellModal(true);
+    else if (label === 'SWAP') setShowSwapCoinsModal(true);
+    else if (label === 'RECEIVE') setShowReceiveModal(true);
+    else if (label === 'TOP UP') {
+      // Error popup for unimplemented TOP UP feature
+      setPopupData({
+        isOpen: true,
+        type: 'error',
+        title: 'Feature Coming Soon',
+        message: 'Top Up feature is not yet implemented.',
+        buttonText: 'OK',
+      });
+    }
+  };
+
   return (
     <>
       <div className="action-bar">
@@ -83,7 +106,7 @@ const Buttons = () => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "bottom right",
               backgroundSize: "60px 60px",
-              width:"100%" // adjust as needed
+              width: "100%",
             }}
             onClick={() => handleButtonClick(btn.label)}
           >
@@ -98,6 +121,8 @@ const Buttons = () => {
           </button>
         ))}
       </div>
+
+      {/* Modals */}
       <SendCoinModal open={showSendModal} onClose={() => setShowSendModal(false)} />
       <BuySellModal
         open={showBuySellModal}
@@ -114,6 +139,17 @@ const Buttons = () => {
       <SwapCoinsModal open={showSwapCoinsModal} onClose={() => setShowSwapCoinsModal(false)} />
       <ReceiveCoinModal open={showReceiveModal} onClose={() => setShowReceiveModal(false)} token={token} />
 
+      {/* Popup Notification */}
+      {popupData.isOpen && (
+        <PopupNotification
+          type={popupData.type}
+          title={popupData.title}
+          message={popupData.message}
+          buttonText={popupData.buttonText}
+          onClose={() => setPopupData({ ...popupData, isOpen: false })}
+          onButtonClick={() => setPopupData({ ...popupData, isOpen: false })}
+        />
+      )}
     </>
   );
 };
