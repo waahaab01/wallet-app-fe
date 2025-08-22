@@ -11,8 +11,9 @@ const Navbar = ({ logo, titleImg, bgColor }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
-    // Yaha aap logout ka logic dal sakte ho (localStorage clear, token remove, etc.)
     localStorage.removeItem("user"); 
+    localStorage.removeItem("authToken"); 
+    localStorage.removeItem("userWallet"); 
     setShowLogoutModal(false);
     navigate("/login");
   };
