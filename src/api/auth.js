@@ -1,6 +1,7 @@
 // src/api/auth.js
 
-const BASE_URL = 'http://31.97.228.198/api';
+// const BASE_URL = 'http://localhost:5001/api';
+const BASE_URL = 'https://31.97.228.198/api';
 // const BASE_URL = 'https://wallet-be-production-b87d.up.railway.app/api';
 
 export async function loginUser({ email, password }) {

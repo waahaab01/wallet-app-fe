@@ -9,7 +9,7 @@ import ProfileHeader from "../Component/Profile/ProfileHeader";
 import ProfileForm from "../Component/Profile/ProfileForm";
 import PersonalInfoForm from "../Component/Profile/PersonalInfoForm";
 
-const BASE_URL = "http://31.97.228.198"; // Change to your actual backend URL
+const BASE_URL = "https://31.97.228.198"; // Change to your actual backend URL
 
 const ProfileSettings = () => {
   const token = localStorage.getItem("authToken");
